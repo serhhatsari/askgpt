@@ -1,4 +1,4 @@
-module serhhatsari/askgpt
+module github.com/serhhatsari/askgpt
 
 go 1.20
 
