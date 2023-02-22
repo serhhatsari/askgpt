@@ -1,6 +1,10 @@
 ## Description  
 Very Simple CLI to interact with OpenAI API.  
 
+## Installation
+Run the following command to install the CLI:   
+`sudo npm i askchatgpt`  
+
 ## Usage  
 First, you need to create an OpenAI API key.   
 You can do this by creating an account on [OpenAI](https://beta.openai.com/).   
