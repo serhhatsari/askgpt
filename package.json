@@ -1,0 +1,23 @@
+{
+  "name": "askgpt",
+  "version": "1.0.0",
+  "description": "Simple CLI to interact with OpenAI API.",
+  "main": "index.js",
+  "scripts": {
+    "postinstall": "go-npm install",
+    "preuninstall": "go-npm uninstall"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/serhhatsari/askgpt.git"
+  },
+  "author": "Serhat SARI",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/serhhatsari/askgpt/issues"
+  },
+  "homepage": "https://github.com/serhhatsari/askgpt#readme",
+  "dependencies": {
+    "go-npm": "^0.1.9"
+  }
+}
