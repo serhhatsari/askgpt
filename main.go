@@ -1,6 +1,6 @@
 package main
 
-import "serhhatsari/askgpt/cmd"
+import "github.com/serhhatsari/askgpt/cmd"
 
 func main() {
 	cmd.Execute()
