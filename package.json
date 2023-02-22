@@ -1,6 +1,6 @@
 {
   "name": "askchatgpt",
-  "version": "1.0.2",
+  "version": "1.0.7",
   "description": "Simple CLI to interact with OpenAI API.",
   "main": "index.js",
   "scripts": {
