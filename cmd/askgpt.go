@@ -3,11 +3,12 @@ package cmd
 import (
 	"bytes"
 	"fmt"
-	jsoniter "github.com/json-iterator/go"
-	"github.com/spf13/cobra"
 	"io/ioutil"
 	"net/http"
 	"os"
+
+	jsoniter "github.com/json-iterator/go"
+	"github.com/spf13/cobra"
 )
 
 type request struct {
