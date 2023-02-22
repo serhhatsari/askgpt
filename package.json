@@ -19,8 +19,7 @@
   "homepage": "https://github.com/serhhatsari/askgpt#readme",
   "dependencies": {
     "go-npm": "^0.1.9"
-  }
-
+  },
 "goBinary": {
     "name": "askgpt",
     "path": "./bin",
