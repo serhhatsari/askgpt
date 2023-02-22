@@ -1,6 +1,6 @@
 {
   "name": "askgpt",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Simple CLI to interact with OpenAI API.",
   "main": "index.js",
   "scripts": {
