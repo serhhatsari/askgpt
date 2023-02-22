@@ -24,7 +24,7 @@
 "goBinary": {
     "name": "askgpt",
     "path": "./bin",
-    "url": "https://github.com/serhhatsari/askgpt/releases/download/v{{version}}/wcup-cli_{{version}}_{{platform}}_{{arch}}.tar.gz"
+    "url": "https://github.com/serhhatsari/askgpt/releases/download/v{{version}}/askgpt_{{version}}_{{platform}}_{{arch}}.tar.gz"
   }
 
 }
