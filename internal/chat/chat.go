@@ -3,15 +3,16 @@ package chat
 import (
 	"bufio"
 	"bytes"
+	"io/ioutil"
+	"net/http"
+	"os"
+	"strings"
+
 	jsoniter "github.com/json-iterator/go"
 	"github.com/pterm/pterm"
 	"github.com/serhhatsari/askgpt/internal"
 	"github.com/serhhatsari/askgpt/models"
 	"github.com/spf13/cobra"
-	"io/ioutil"
-	"net/http"
-	"os"
-	"strings"
 )
 
 var Messages []models.ChatMessage
@@ -20,7 +21,7 @@ func AskGPT(cmd *cobra.Command, args []string) {
 
 	setEnv()
 
-	// Ask the user for a prompt until they Ctrl C
+	printDescription()
 	for {
 		getMessage()
 
@@ -33,6 +34,22 @@ func AskGPT(cmd *cobra.Command, args []string) {
 		response := sendRequest(request)
 
 		printResponse(response)
+
+	}
+
+}
+
+func printDescription() {
+	pterm.DefaultHeader.Println("Welcome to AskGPT!")
+	pterm.Println(pterm.Blue("AskGPT is a CLI to interact with ChatGPT"))
+	pterm.Println(pterm.Blue("You can ask any question and ChatGPT will answer it."))
+	pterm.Println(pterm.Red("To exit, type \"exit\" or \"quit\" or press Ctrl C.\n"))
+}
+
+func checkExit(message string) {
+	message = strings.ToLower(message)
+	if message == "exit" || message == "quit" {
+		os.Exit(0)
 	}
 
 }
@@ -55,6 +72,8 @@ func getMessage() models.ChatMessage {
 	if scanner.Scan() {
 		message = scanner.Text()
 	}
+
+	checkExit(message)
 
 	var UserMessage models.ChatMessage
 	UserMessage.Role = "user"
