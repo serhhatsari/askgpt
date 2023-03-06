@@ -31,3 +31,5 @@ Examples:
   askgpt chat // This will start a chat session with GPT-3
 
 ```
+
+![Usage](https://raw.githubusercontent.com/serhhatsari/askgpt/master/assets/usage)
