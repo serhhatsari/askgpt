@@ -22,7 +22,7 @@ askgpt <command>
 
 Available Commands:
   cmp             Ask one thing to OpenAI
-  chat            Chat with GPT-3  
+  chat            Make a conversation with GPT-3  
   help            Help about any command
 
 Examples:
