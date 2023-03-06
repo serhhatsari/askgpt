@@ -7,10 +7,8 @@ import (
 
 var cmdChat = &cobra.Command{
 	Use:        "chat",
-	Aliases:    []string{"chatgpt"},
-	SuggestFor: []string{"gpt", "askchatgpt"},
-	Short:      "Simple CLI to interact with ChatGPT",
-	Long:       "Simple CLI to interact with ChatGPT by wrapping the API provided by it.",
-	Example:    "askgpt \"How do I make an HTTP request in Go?",
+	Short:      "Chat with ChatGPT",
+	Long:       "Chat with ChatGPT model and get answers to your questions.",
+	Example:    "askgpt chat",
 	Run:        chat.AskGPT,
 }
