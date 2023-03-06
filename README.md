@@ -6,7 +6,7 @@ CLI to interact with OpenAI API.
 * [OpenAI API Key](https://beta.openai.com/)  
 You need to set the API key as an environment variable:  
 `export OPENAI_API_KEY=<your_api_key>`
-* [Go](https://golang.org/)
+* [Go](https://golang.org/) 
 
 ### Installing  
 Clone the repo by using the following command:     
@@ -21,7 +21,11 @@ Build the CLI by using the following command:
 askgpt <command>
 
 Available Commands:
-  cmp      Given a prompt, the model will return one or more predicted completions.  
+  cmp             Given a prompt, the model will return one or more predicted completions.  
   chat            Chat with GPT-3  
+
+Examples:
+  askgpt cmp "How do I make a HTTP request in Go?"
+  askgpt chat // This will start a chat session with GPT-3
 
 ```
