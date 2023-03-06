@@ -21,10 +21,12 @@ Build the CLI by using the following command:
 askgpt <command>
 
 Available Commands:
-  cmp             Given a prompt, the model will return one or more predicted completions.  
+  cmp             Ask one thing to OpenAI
   chat            Chat with GPT-3  
+  help            Help about any command
 
 Examples:
+  askgpt help  
   askgpt cmp "How do I make a HTTP request in Go?"
   askgpt chat // This will start a chat session with GPT-3
 
