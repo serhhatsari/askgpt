@@ -1,6 +1,8 @@
 package cmd
 
 import (
+	"github.com/serhhatsari/askgpt/internal"
+	
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
@@ -12,7 +14,7 @@ var cmdRoot = &cobra.Command{
 	Short:      "Simple CLI to interact with ChatGPT",
 	Long:       "Simple CLI to interact with ChatGPT by wrapping the API provided by it.",
 	Example:    "askgpt \"How do I make an HTTP request in Go?",
-	Run:        AskGPT,
+	Run:        internal.AskGPT,
 }
 
 func Execute() error {

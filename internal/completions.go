@@ -1,8 +1,9 @@
-package cmd
+package internal
 
 import (
 	"bytes"
 	"fmt"
+	"github.com/pterm/pterm"
 	"io/ioutil"
 	"net/http"
 	"os"
@@ -89,5 +90,5 @@ func AskGPT(cmd *cobra.Command, args []string) {
 		fmt.Println("No response")
 		return
 	}
-	fmt.Println(result)
+	pterm.Println(pterm.Green(result) + "\n\n")
 }
