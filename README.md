@@ -29,14 +29,14 @@ Examples:
   askgpt image "Cats are playing football with dogs."
 
 ```
-### Command: *askgpt chat*
-<img src="https://raw.githubusercontent.com/serhhatsari/askgpt/master/assets/chatusage.gif" width="50%" height="50%"/>
+### `$ askgpt chat`  
+<img src="https://raw.githubusercontent.com/serhhatsari/askgpt/master/assets/chatusage.gif" width="60%" height="50%"/>
 
-### Command: *askgpt cmp "your prompt"*
-<img src="https://raw.githubusercontent.com/serhhatsari/askgpt/master/assets/cmpusage.gif" width="50%" height="50%"/>
+### `$ askgpt cmp "<your_prompt>"`  
+<img src="https://raw.githubusercontent.com/serhhatsari/askgpt/master/assets/cmpusage.gif" width="60%" height="50%"/>
 
-### Command: *askgpt image "your prompt"*
-<img src="https://raw.githubusercontent.com/serhhatsari/askgpt/master/assets/imageusage.gif" width="50%" height="50%"/>
+### `$ *askgpt image "<your_prompt>"*`  
+<img src="https://raw.githubusercontent.com/serhhatsari/askgpt/master/assets/imageusage.gif" width="60%" height="50%"/>
 
 
 ## Contributions
