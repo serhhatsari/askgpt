@@ -2,13 +2,14 @@ package completions
 
 import (
 	"bytes"
-	"github.com/pterm/pterm"
-	"github.com/serhhatsari/askgpt/internal"
-	"github.com/serhhatsari/askgpt/models"
 	"io/ioutil"
 	"net/http"
 	"os"
 	"strings"
+
+	"github.com/pterm/pterm"
+	"github.com/serhhatsari/askgpt/internal"
+	"github.com/serhhatsari/askgpt/models"
 
 	jsoniter "github.com/json-iterator/go"
 	"github.com/spf13/cobra"
@@ -34,7 +35,8 @@ func GetCompletion(cmd *cobra.Command, args []string) {
 func setToken() {
 	// Check if the OPENAI_API_KEY environment variable is set
 	if os.Getenv("OPENAI_API_KEY") == "" {
-		panic("Please set the OPENAI_API_KEY environment variable")
+		pterm.Error.Println("Please set the OPENAI_API_KEY environment variable.")
+		os.Exit(1)
 	}
 	internal.OPENAI_API_KEY = os.Getenv("OPENAI_API_KEY")
 }

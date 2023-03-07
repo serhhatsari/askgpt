@@ -32,6 +32,9 @@ Examples:
 ### Command: *askgpt chat*
 ![Chat Usage](https://raw.githubusercontent.com/serhhatsari/askgpt/master/assets/chatusage.gif)
 
+<img src="/assets/chatusage.gif" width="250" height="250"/>
+
+
 ### Command: *askgpt cmp "your prompt"*
 ![Cmp Usage](https://raw.githubusercontent.com/serhhatsari/askgpt/master/assets/cmpusage.gif)
 

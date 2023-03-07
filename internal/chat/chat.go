@@ -58,7 +58,7 @@ func setEnv() {
 	// Check if the OPENAI_API_KEY environment variable is set
 	if os.Getenv("OPENAI_API_KEY") == "" {
 		pterm.Error.Println("Please set the OPENAI_API_KEY environment variable.")
-		return
+		os.Exit(1)
 	}
 	internal.OPENAI_API_KEY = os.Getenv("OPENAI_API_KEY")
 
