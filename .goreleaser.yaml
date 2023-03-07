@@ -32,3 +32,10 @@ changelog:
     exclude:
       - '^docs:'
       - '^test:'
+
+brews:
+- name: askgpt
+  homepage: https://github.com/serhhatsari/homebrew-tools 
+  tap:
+    owner: serhhatsari
+    name: homebrew-tools
