@@ -1,5 +1,5 @@
 ## Description  
-CLI to interact with OpenAI API.
+AskGPT is a CLI tool built in Go that allows you to interact with ChatGPT, a large language model trained by OpenAI. With this tool, you can easily ask ChatGPT for help with various tasks, from generating text to images.
 
 ## Getting Started
 ### Dependencies
@@ -41,3 +41,11 @@ Examples:
 
 ## askgpt image "your prompt"
 ![Image Usage](https://raw.githubusercontent.com/serhhatsari/askgpt/master/assets/imageusage.gif)
+
+
+## Contributions
+Contributions to AskGPT are always welcome! If you find a bug or have an idea for a new feature, feel free to submit a pull request or open an issue on the GitHub repository.
+
+## License
+AskGPT is open-source software licensed under the MIT License.
+
