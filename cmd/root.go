@@ -2,15 +2,16 @@ package cmd
 
 import (
 	"fmt"
+
 	"github.com/pterm/pterm"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
 
 var cmdRoot = &cobra.Command{
-	Use:        "askgpt",
-	Short:      "Simple CLI to interact with ChatGPT",
-	Long:       "Simple CLI to interact with ChatGPT by wrapping the API provided by it.",
+	Use:   "askgpt",
+	Short: "Simple CLI to interact with ChatGPT",
+	Long:  "Simple CLI to interact with ChatGPT by wrapping the API provided by it.",
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println()
 		pterm.DefaultHeader.Println("Welcome to AskGPT!")
@@ -18,12 +19,12 @@ var cmdRoot = &cobra.Command{
 	},
 }
 
-
 func Execute() error {
 
 	cmdRoot.MarkPersistentFlagRequired("port")
 	cmdRoot.AddCommand(cmdChat)
 	cmdRoot.AddCommand(cmdCompletion)
+	cmdRoot.AddCommand(cmdImage)
 	return cmdRoot.Execute()
 }
 

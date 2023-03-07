@@ -23,12 +23,14 @@ askgpt <command>
 Available Commands:
   cmp             Ask one thing to OpenAI
   chat            Make a conversation with GPT-3  
+  image           Create an image from a prompt using the Dall-E model.
   help            Help about any command
 
 Examples:
   askgpt help  
   askgpt cmp "How do I make a HTTP request in Go?"
   askgpt chat // This will start a chat session with GPT-3
+  askgpt image "Cats are playing football with dogs."
 
 ```
 ## Demo 
