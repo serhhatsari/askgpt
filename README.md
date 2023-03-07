@@ -29,13 +29,13 @@ Examples:
   askgpt image "Cats are playing football with dogs."
 
 ```
-### **Command**: *askgpt chat*
+### Command: *askgpt chat*
 ![Chat Usage](https://raw.githubusercontent.com/serhhatsari/askgpt/master/assets/chatusage.gif)
 
-### **Command**: *askgpt cmp "your prompt"*
+### Command: *askgpt cmp "your prompt"*
 ![Cmp Usage](https://raw.githubusercontent.com/serhhatsari/askgpt/master/assets/cmpusage.gif)
 
-### **Command**: *askgpt image "your prompt"*
+### Command: *askgpt image "your prompt"*
 ![Image Usage](https://raw.githubusercontent.com/serhhatsari/askgpt/master/assets/imageusage.gif)
 
 
