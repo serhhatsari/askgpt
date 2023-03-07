@@ -41,3 +41,11 @@ Examples:
 
 ## askgpt image "your prompt"
 ![Image Usage](https://raw.githubusercontent.com/serhhatsari/askgpt/master/assets/imageusage.gif)
+
+
+## Contributions
+Contributions to AskGPT are always welcome! If you find a bug or have an idea for a new feature, feel free to submit a pull request or open an issue on the GitHub repository.
+
+## License
+AskGPT is open-source software licensed under the MIT License.
+
