@@ -30,13 +30,13 @@ Examples:
 
 ```
 ### Command: *askgpt chat*
-![Chat Usage](https://raw.githubusercontent.com/serhhatsari/askgpt/master/assets/chatusage.gif)
+<img src="https://raw.githubusercontent.com/serhhatsari/askgpt/master/assets/chatusage.gif" width="50%" height="50%"/>
 
 ### Command: *askgpt cmp "your prompt"*
-![Cmp Usage](https://raw.githubusercontent.com/serhhatsari/askgpt/master/assets/cmpusage.gif)
+<img src="https://raw.githubusercontent.com/serhhatsari/askgpt/master/assets/cmpusage.gif" width="50%" height="50%"/>
 
 ### Command: *askgpt image "your prompt"*
-![Image Usage](https://raw.githubusercontent.com/serhhatsari/askgpt/master/assets/imageusage.gif)
+<img src="https://raw.githubusercontent.com/serhhatsari/askgpt/master/assets/imageusage.gif" width="50%" height="50%"/>
 
 
 ## Contributions
