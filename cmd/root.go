@@ -15,7 +15,7 @@ var cmdRoot = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println()
 		pterm.DefaultHeader.Println("Welcome to AskGPT!")
-		pterm.Println(pterm.Blue("AskGPT is a CLI to interact with OpenAI API\n"))
+		pterm.Println(pterm.Blue("AskGPT is a CLI to interact with OpenAI API.\n"))
 	},
 }
 
