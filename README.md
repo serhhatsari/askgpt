@@ -31,13 +31,13 @@ Examples:
 
 ```
 `$ askgpt chat`  
-<img src="https://raw.githubusercontent.com/serhhatsari/askgpt/master/docs/assets/chatusage.gif" width="60%" height="50%"/>
+<img src="https://raw.githubusercontent.com/serhhatsari/askgpt/master/assets/chatusage.gif" width="60%" height="50%"/>
 
 `$ askgpt cmp "<your_prompt>"`  
-<img src="https://raw.githubusercontent.com/serhhatsari/askgpt/master/docs/assets/cmpusage.gif" width="60%" height="50%"/>
+<img src="https://raw.githubusercontent.com/serhhatsari/askgpt/master/assets/cmpusage.gif" width="60%" height="50%"/>
 
 `$ askgpt image "<your_prompt>"`  
-<img src="https://raw.githubusercontent.com/serhhatsari/askgpt/master/docs/assets/imageusage.gif" width="60%" height="50%"/>
+<img src="https://raw.githubusercontent.com/serhhatsari/askgpt/master/assets/imageusage.gif" width="60%" height="50%"/>
 
 
 ## Contributions
