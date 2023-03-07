@@ -1,5 +1,5 @@
 ## Description  
-AskGPT is a CLI tool built in Go that allows you to interact with ChatGPT, Dall-E, models trained by OpenAI.  
+AskGPT is a CLI tool built in Go that allows you to interact with ChatGPT, Dall-E models trained by OpenAI.  
 With this tool, you can easily ask ChatGPT for help with various tasks, from generating text to images.
 
 ## Getting Started
