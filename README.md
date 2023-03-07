@@ -1,10 +1,10 @@
 ## Description  
 AskGPT is a CLI tool built in Go that allows you to interact with ChatGPT, a large language model trained by OpenAI. With this tool, you can easily ask ChatGPT for help with various tasks, from generating text to images.
 
-## Getting Started
-### Installation
-Using HomeBrew:   
+## Installation
+Via [HomeBrew](https://brew.sh/):   
 `brew install serhhatsari/tools/askgpt`
+
 
 ### Usage
 ```shell
