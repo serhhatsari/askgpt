@@ -33,11 +33,11 @@ Examples:
   askgpt image "Cats are playing football with dogs."
 
 ```
-# askgpt chat
+## askgpt chat
 ![Chat Usage](https://raw.githubusercontent.com/serhhatsari/askgpt/master/assets/chatusage.gif)
 
-# askgpt cmp "your prompt"
+## askgpt cmp "your prompt"
 ![Cmp Usage](https://raw.githubusercontent.com/serhhatsari/askgpt/master/assets/cmpusage.gif)
 
-# askgpt image "your prompt"
+## askgpt image "your prompt"
 ![Image Usage](https://raw.githubusercontent.com/serhhatsari/askgpt/master/assets/imageusage.gif)
