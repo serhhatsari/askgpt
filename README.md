@@ -1,5 +1,6 @@
 ## Description  
-AskGPT is a CLI tool built in Go that allows you to interact with ChatGPT, a large language model trained by OpenAI. With this tool, you can easily ask ChatGPT for help with various tasks, from generating text to images.
+AskGPT is a CLI tool built in Go that allows you to interact with ChatGPT, Dall-E models trained by OpenAI.  
+With this tool, you can easily ask ChatGPT for help with various tasks, from generating text to images.
 
 ## Getting Started
 ### Dependencies  
@@ -29,17 +30,14 @@ Examples:
   askgpt image "Cats are playing football with dogs."
 
 ```
-### Command: *askgpt chat*
-![Chat Usage](https://raw.githubusercontent.com/serhhatsari/askgpt/master/assets/chatusage.gif)
+`$ askgpt chat`  
+<img src="https://raw.githubusercontent.com/serhhatsari/askgpt/master/assets/chatusage.gif" width="60%" height="50%"/>
 
-<img src="/assets/chatusage.gif" width="250" height="250"/>
+`$ askgpt cmp "<your_prompt>"`  
+<img src="https://raw.githubusercontent.com/serhhatsari/askgpt/master/assets/cmpusage.gif" width="60%" height="50%"/>
 
-
-### Command: *askgpt cmp "your prompt"*
-![Cmp Usage](https://raw.githubusercontent.com/serhhatsari/askgpt/master/assets/cmpusage.gif)
-
-### Command: *askgpt image "your prompt"*
-![Image Usage](https://raw.githubusercontent.com/serhhatsari/askgpt/master/assets/imageusage.gif)
+`$ askgpt image "<your_prompt>"`  
+<img src="https://raw.githubusercontent.com/serhhatsari/askgpt/master/assets/imageusage.gif" width="60%" height="50%"/>
 
 
 ## Contributions
