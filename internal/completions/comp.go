@@ -1,8 +1,8 @@
 package completions
 
 import (
-	"fmt"
 	"github.com/serhhatsari/askgpt/pkg/openai"
+	"os"
 	"strings"
 
 	jsoniter "github.com/json-iterator/go"
@@ -17,7 +17,8 @@ var CmdCompletion = &cobra.Command{
 	Run:     GetCompletion,
 	Args: func(cmd *cobra.Command, args []string) error {
 		if len(args) != 1 {
-			return fmt.Errorf("Please provide a prompt, example: askgpt \"How do I make an HTTP request in Go?")
+			pterm.Error.Println("Please provide a prompt, example: askgpt \"How do I make an HTTP request in Go?")
+			os.Exit(1)
 		}
 		return nil
 	},
