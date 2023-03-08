@@ -2,19 +2,20 @@ package openai
 
 import (
 	"bytes"
-	"github.com/pterm/pterm"
 	"io/ioutil"
 	"net/http"
 	"os"
+
+	"github.com/pterm/pterm"
 )
 
 const (
-	GPT_URL         = "https://api.openai.com/v1/chat/completions"
-	COMPLETIONS_URL = "https://api.openai.com/v1/completions"
-	IMAGE_URL       = "https://api.openai.com/v1/images/generations"
+	gptUrl         = "https://api.openai.com/v1/chat/completions"
+	completionsUrl = "https://api.openai.com/v1/completions"
+	imageUrl       = "https://api.openai.com/v1/images/generations"
 )
 
-var OPENAI_API_KEY string
+var openaiApiKey string
 
 func SendRequestToChatGPT(jsonBody []byte) []byte {
 	setEnv()
@@ -38,8 +39,8 @@ func SendRequestToDallE(jsonBody []byte) []byte {
 }
 
 func setEnv() {
-	OPENAI_API_KEY = os.Getenv("OPENAI_API_KEY")
-	if OPENAI_API_KEY == "" {
+	openaiApiKey = os.Getenv("OPENAI_API_KEY")
+	if openaiApiKey == "" {
 		pterm.Error.Println("Please set the OPENAI_API_KEY environment variable.")
 		os.Exit(1)
 	}
@@ -48,7 +49,7 @@ func setEnv() {
 func createGPTRequest(jsonBody []byte) *http.Request {
 
 	// Create the HTTP request
-	req, err := http.NewRequest("POST", GPT_URL, bytes.NewBuffer(jsonBody))
+	req, err := http.NewRequest("POST", gptUrl, bytes.NewBuffer(jsonBody))
 	if err != nil {
 		panic(err)
 	}
@@ -58,7 +59,7 @@ func createGPTRequest(jsonBody []byte) *http.Request {
 func createCompletionsRequest(jsonBody []byte) *http.Request {
 
 	// Create the HTTP request
-	req, err := http.NewRequest("POST", COMPLETIONS_URL, bytes.NewBuffer(jsonBody))
+	req, err := http.NewRequest("POST", completionsUrl, bytes.NewBuffer(jsonBody))
 	if err != nil {
 		panic(err)
 	}
@@ -67,7 +68,7 @@ func createCompletionsRequest(jsonBody []byte) *http.Request {
 
 func createDallERequest(jsonBody []byte) *http.Request {
 	// Create the HTTP request
-	req, err := http.NewRequest("POST", IMAGE_URL, bytes.NewBuffer(jsonBody))
+	req, err := http.NewRequest("POST", imageUrl, bytes.NewBuffer(jsonBody))
 	if err != nil {
 		panic(err)
 	}
@@ -76,7 +77,7 @@ func createDallERequest(jsonBody []byte) *http.Request {
 
 func addHeaders(req *http.Request) *http.Request {
 	// Set the headers
-	req.Header.Set("Authorization", "Bearer "+OPENAI_API_KEY)
+	req.Header.Set("Authorization", "Bearer "+openaiApiKey)
 	req.Header.Set("Content-Type", "application/json")
 	return req
 }
