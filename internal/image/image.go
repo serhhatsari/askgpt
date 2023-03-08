@@ -18,7 +18,6 @@ import (
 var CmdImage = &cobra.Command{
 	Use:     "image",
 	Short:   "Create an image from a prompt using the Dall-E model.",
-	Long:    "Create an image from a prompt using the Dall-E model.",
 	Example: "askgpt image \"A drawing of a cat.\"",
 	Run:     GenerateImage,
 	Args: func(cmd *cobra.Command, args []string) error {

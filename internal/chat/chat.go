@@ -16,7 +16,6 @@ var Messages []Message
 var CmdChat = &cobra.Command{
 	Use:     "chat",
 	Short:   "Chat with ChatGPT",
-	Long:    "Chat with ChatGPT model and get answers to your questions.",
 	Example: "askgpt chat",
 	Run:     AskGPT,
 }

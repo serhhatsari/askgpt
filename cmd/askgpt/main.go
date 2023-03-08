@@ -13,11 +13,11 @@ import (
 
 var cmdRoot = &cobra.Command{
 	Use:   "askgpt",
-	Short: "Simple CLI to interact with ChatGPT",
-	Long:  "Simple CLI to interact with ChatGPT by wrapping the API provided by it.",
+	Short: "Simple CLI to interact with OpenAI API",
+	Long:  "Simple CLI to interact with OpenAI API and get answers to your questions or generate images.",
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println()
-		pterm.DefaultHeader.Println("Welcome to AskGPT!")
+		pterm.DefaultHeader.Println(pterm.Red("Welcome to AskGPT!"))
 		pterm.Println(pterm.Blue("AskGPT is a CLI to interact with OpenAI API\n"))
 	},
 }
