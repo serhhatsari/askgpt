@@ -1,10 +1,9 @@
 package image
 
 import (
-	"bytes"
 	"fmt"
+	"github.com/serhhatsari/askgpt/pkg/openai"
 	"io"
-	"io/ioutil"
 	"net/http"
 	"os"
 	"path/filepath"
@@ -16,10 +15,6 @@ import (
 	"github.com/spf13/cobra"
 )
 
-const IMAGE_URL = "https://api.openai.com/v1/images/generations"
-
-var OPENAI_API_KEY string
-
 var CmdImage = &cobra.Command{
 	Use:     "image",
 	Short:   "Create an image from a prompt using the Dall-E model.",
@@ -30,47 +25,38 @@ var CmdImage = &cobra.Command{
 
 func GenerateImage(cmd *cobra.Command, args []string) {
 
-	setToken()
-
 	prompt := getPrompt(args)
 
 	body := createBody(prompt)
 
 	jsonBody := convertBodyToJSON(body)
 
-	req := createRequest(jsonBody)
+	res := openai.SendRequestToDallE(jsonBody)
 
-	response := sendRequest(req)
+	parsedResponse := parseResponse(res)
 
-	printResponse(response)
+	printResponse(parsedResponse)
 
-}
-
-func setToken() {
-	// Check if the OPENAI_API_KEY environment variable is set
-	if os.Getenv("OPENAI_API_KEY") == "" {
-		pterm.Error.Println("Please set the OPENAI_API_KEY environment variable.")
-		os.Exit(1)
-	}
-	OPENAI_API_KEY = os.Getenv("OPENAI_API_KEY")
 }
 
 func getPrompt(args []string) string {
 	// Check if the user provided a prompt
 	if len(args) != 1 {
-		panic("Please provide a prompt, example: askgpt image \"A drawing of a cat.\"")
+		pterm.Error.Println("Please provide a prompt, example: askgpt image \"A drawing of a cat.\"")
+		os.Exit(1)
 	}
 
 	// Check if the prompt is too long
 	prompt := args[0]
 	if len(prompt) > 2048 {
-		panic("Prompt is too long, max length is 2048")
+		pterm.Error.Println("Prompt is too long, max length is 2048")
+		os.Exit(1)
 	}
 	return prompt
 }
 
-func createBody(prompt string) ImageRequest {
-	body := ImageRequest{
+func createBody(prompt string) Request {
+	body := Request{
 		Prompt:         prompt,
 		Size:           "1024x1024",
 		N:              1,
@@ -79,7 +65,7 @@ func createBody(prompt string) ImageRequest {
 	return body
 }
 
-func convertBodyToJSON(request ImageRequest) []byte {
+func convertBodyToJSON(request Request) []byte {
 	// Convert the request body to Byte Array
 	jsonBody, err := jsoniter.Marshal(&request)
 	if err != nil {
@@ -88,37 +74,10 @@ func convertBodyToJSON(request ImageRequest) []byte {
 	return jsonBody
 }
 
-func createRequest(jsonBody []byte) *http.Request {
-	// Create the HTTP request
-	req, err := http.NewRequest("POST", IMAGE_URL, bytes.NewBuffer(jsonBody))
-	if err != nil {
-		panic(err)
-	}
-
-	// Set the headers
-	req.Header.Set("Authorization", "Bearer "+OPENAI_API_KEY)
-	req.Header.Set("Content-Type", "application/json")
-	return req
-}
-
-func sendRequest(req *http.Request) ImageResponse {
-	// Send the request
-	client := &http.Client{}
-	resp, err := client.Do(req)
-	if err != nil {
-		panic(err)
-	}
-	defer resp.Body.Close()
-
-	// Get the response body
-	respBody, err := ioutil.ReadAll(resp.Body)
-	if err != nil {
-		panic(err)
-	}
-
+func parseResponse(res []byte) Response {
 	// Parse the response body
-	var response ImageResponse
-	err = jsoniter.Unmarshal(respBody, &response)
+	var response Response
+	err := jsoniter.Unmarshal(res, &response)
 	if err != nil {
 		panic(err)
 	}
@@ -126,7 +85,7 @@ func sendRequest(req *http.Request) ImageResponse {
 	return response
 }
 
-func printResponse(response ImageResponse) {
+func printResponse(response Response) {
 	ImageUrl := response.Data[0].Url
 
 	filename := strconv.Itoa(int(response.Created)) + ".png"

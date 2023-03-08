@@ -1,6 +1,6 @@
 package image
 
-type ImageRequest struct {
+type Request struct {
 	Prompt         string `json:"prompt"`
 	N              int    `json:"n"`
 	Size           string `json:"size"`
@@ -8,12 +8,12 @@ type ImageRequest struct {
 	User           string `json:"user"`
 }
 
-type ImageData struct {
+type Data struct {
 	Url     string `json:"url"`
 	B64Json string `json:"b64_json"`
 }
 
-type ImageResponse struct {
-	Created int64       `json:"created"`
-	Data    []ImageData `json:"data"`
+type Response struct {
+	Created int64  `json:"created"`
+	Data    []Data `json:"data"`
 }

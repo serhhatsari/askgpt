@@ -1,21 +1,14 @@
 package completions
 
 import (
-	"bytes"
 	"fmt"
-	"io/ioutil"
-	"net/http"
-	"os"
+	"github.com/serhhatsari/askgpt/pkg/openai"
 	"strings"
 
 	jsoniter "github.com/json-iterator/go"
 	"github.com/pterm/pterm"
 	"github.com/spf13/cobra"
 )
-
-const COMPLETIONS_URL = "https://api.openai.com/v1/completions"
-
-var OPENAI_API_KEY string
 
 var CmdCompletion = &cobra.Command{
 	Use:     "cmp",
@@ -32,28 +25,17 @@ var CmdCompletion = &cobra.Command{
 
 func GetCompletion(cmd *cobra.Command, args []string) {
 
-	setToken()
-
 	prompt := getPrompt(args)
 
 	body := createBody(prompt)
 
 	jsonBody := convertBodyToJSON(body)
 
-	req := createRequest(jsonBody)
+	res := openai.SendRequestToCompletions(jsonBody)
 
-	response := sendRequest(req)
+	parsedResponse := parseResponse(res)
 
-	printResponse(response)
-}
-
-func setToken() {
-	// Check if the OPENAI_API_KEY environment variable is set
-	if os.Getenv("OPENAI_API_KEY") == "" {
-		pterm.Error.Println("Please set the OPENAI_API_KEY environment variable.")
-		os.Exit(1)
-	}
-	OPENAI_API_KEY = os.Getenv("OPENAI_API_KEY")
+	printResponse(parsedResponse)
 }
 
 func getPrompt(args []string) string {
@@ -70,8 +52,8 @@ func getPrompt(args []string) string {
 	return prompt
 }
 
-func createBody(prompt string) CompletionRequest {
-	body := CompletionRequest{
+func createBody(prompt string) Request {
+	body := Request{
 		Prompt:    prompt,
 		Model:     "text-davinci-003",
 		MaxTokens: 2040,
@@ -79,7 +61,7 @@ func createBody(prompt string) CompletionRequest {
 	return body
 }
 
-func convertBodyToJSON(request CompletionRequest) []byte {
+func convertBodyToJSON(request Request) []byte {
 	// Convert the request body to Byte Array
 	jsonBody, err := jsoniter.Marshal(&request)
 	if err != nil {
@@ -88,37 +70,10 @@ func convertBodyToJSON(request CompletionRequest) []byte {
 	return jsonBody
 }
 
-func createRequest(jsonBody []byte) *http.Request {
-	// Create the HTTP request
-	req, err := http.NewRequest("POST", COMPLETIONS_URL, bytes.NewBuffer(jsonBody))
-	if err != nil {
-		panic(err)
-	}
-
-	// Set the headers
-	req.Header.Set("Authorization", "Bearer "+OPENAI_API_KEY)
-	req.Header.Set("Content-Type", "application/json")
-	return req
-}
-
-func sendRequest(req *http.Request) CompletionResponse {
-	// Send the request
-	client := &http.Client{}
-	resp, err := client.Do(req)
-	if err != nil {
-		panic(err)
-	}
-	defer resp.Body.Close()
-
-	// Get the response body
-	respBody, err := ioutil.ReadAll(resp.Body)
-	if err != nil {
-		panic(err)
-	}
-
+func parseResponse(respBody []byte) Response {
 	// Parse the response body
-	var response CompletionResponse
-	err = jsoniter.Unmarshal(respBody, &response)
+	var response Response
+	err := jsoniter.Unmarshal(respBody, &response)
 	if err != nil {
 		panic(err)
 	}
@@ -126,7 +81,7 @@ func sendRequest(req *http.Request) CompletionResponse {
 	return response
 }
 
-func printResponse(response CompletionResponse) {
+func printResponse(response Response) {
 	// Print the response
 	result := response.Choices[0].Text
 	result = strings.TrimSpace(result)

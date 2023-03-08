@@ -2,9 +2,7 @@ package chat
 
 import (
 	"bufio"
-	"bytes"
-	"io/ioutil"
-	"net/http"
+	"github.com/serhhatsari/askgpt/pkg/openai"
 	"os"
 	"strings"
 
@@ -13,11 +11,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-const GPT_URL = "https://api.openai.com/v1/chat/completions"
-
-var OPENAI_API_KEY string
-
-var Messages []ChatMessage
+var Messages []Message
 
 var CmdChat = &cobra.Command{
 	Use:     "chat",
@@ -29,9 +23,10 @@ var CmdChat = &cobra.Command{
 
 func AskGPT(cmd *cobra.Command, args []string) {
 
-	setEnv()
+	checkToken()
 
 	printDescription()
+
 	for {
 		getMessage()
 
@@ -39,14 +34,22 @@ func AskGPT(cmd *cobra.Command, args []string) {
 
 		jsonBody := convertBodyToJSON(body)
 
-		request := createRequest(jsonBody)
+		res := openai.SendRequestToChatGPT(jsonBody)
 
-		response := sendRequest(request)
+		parsedResponse := parseResponse(res)
 
-		printResponse(response)
+		printResponse(parsedResponse)
 
 	}
 
+}
+
+func checkToken() {
+	OpenaiApiKey := os.Getenv("OPENAI_API_KEY")
+	if OpenaiApiKey == "" {
+		pterm.Error.Println("Please set the OPENAI_API_KEY environment variable.")
+		os.Exit(1)
+	}
 }
 
 func printDescription() {
@@ -64,17 +67,7 @@ func checkExit(message string) {
 
 }
 
-func setEnv() {
-	// Check if the OPENAI_API_KEY environment variable is set
-	if os.Getenv("OPENAI_API_KEY") == "" {
-		pterm.Error.Println("Please set the OPENAI_API_KEY environment variable.")
-		os.Exit(1)
-	}
-	OPENAI_API_KEY = os.Getenv("OPENAI_API_KEY")
-
-}
-
-func getMessage() ChatMessage {
+func getMessage() Message {
 	var message string
 	pterm.Print(pterm.Yellow("You: "))
 
@@ -85,7 +78,7 @@ func getMessage() ChatMessage {
 
 	checkExit(message)
 
-	var UserMessage ChatMessage
+	var UserMessage Message
 	UserMessage.Role = "user"
 	UserMessage.Content = message
 	Messages = append(Messages, UserMessage)
@@ -114,37 +107,12 @@ func convertBodyToJSON(request ChatRequest) []byte {
 	return jsonBody
 }
 
-func createRequest(jsonBody []byte) *http.Request {
-	// Create the HTTP request
-	req, err := http.NewRequest("POST", GPT_URL, bytes.NewBuffer(jsonBody))
-	if err != nil {
-		panic(err)
-	}
-
-	// Set the headers
-	req.Header.Set("Authorization", "Bearer "+OPENAI_API_KEY)
-	req.Header.Set("Content-Type", "application/json")
-	return req
-}
-
-func sendRequest(req *http.Request) ChatResponse {
-	// Send the request
-	client := &http.Client{}
-	resp, err := client.Do(req)
-	if err != nil {
-		panic(err)
-	}
-	defer resp.Body.Close()
-
-	// Get the response body
-	respBody, err := ioutil.ReadAll(resp.Body)
-	if err != nil {
-		panic(err)
-	}
-
+func parseResponse(res []byte) Response {
 	// Parse the response body
-	var response ChatResponse
-	err = jsoniter.Unmarshal(respBody, &response)
+	var response Response
+
+	err := jsoniter.Unmarshal(res, &response)
+
 	if err != nil {
 		panic(err)
 	}
@@ -152,7 +120,7 @@ func sendRequest(req *http.Request) ChatResponse {
 	return response
 }
 
-func printResponse(response ChatResponse) {
+func printResponse(response Response) {
 	// Print the response
 	result := response.Choices[0].Message.Content
 	result = strings.TrimSpace(result)
