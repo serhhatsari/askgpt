@@ -1,4 +1,4 @@
-package models
+package image
 
 type ImageRequest struct {
 	Prompt         string `json:"prompt"`

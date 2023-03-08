@@ -10,12 +10,22 @@ import (
 
 	jsoniter "github.com/json-iterator/go"
 	"github.com/pterm/pterm"
-	"github.com/serhhatsari/askgpt/internal"
-	"github.com/serhhatsari/askgpt/models"
 	"github.com/spf13/cobra"
 )
 
-var Messages []models.ChatMessage
+const GPT_URL = "https://api.openai.com/v1/chat/completions"
+
+var OPENAI_API_KEY string
+
+var Messages []ChatMessage
+
+var CmdChat = &cobra.Command{
+	Use:     "chat",
+	Short:   "Chat with ChatGPT",
+	Long:    "Chat with ChatGPT model and get answers to your questions.",
+	Example: "askgpt chat",
+	Run:     AskGPT,
+}
 
 func AskGPT(cmd *cobra.Command, args []string) {
 
@@ -60,11 +70,11 @@ func setEnv() {
 		pterm.Error.Println("Please set the OPENAI_API_KEY environment variable.")
 		os.Exit(1)
 	}
-	internal.OPENAI_API_KEY = os.Getenv("OPENAI_API_KEY")
+	OPENAI_API_KEY = os.Getenv("OPENAI_API_KEY")
 
 }
 
-func getMessage() models.ChatMessage {
+func getMessage() ChatMessage {
 	var message string
 	pterm.Print(pterm.Yellow("You: "))
 
@@ -75,7 +85,7 @@ func getMessage() models.ChatMessage {
 
 	checkExit(message)
 
-	var UserMessage models.ChatMessage
+	var UserMessage ChatMessage
 	UserMessage.Role = "user"
 	UserMessage.Content = message
 	Messages = append(Messages, UserMessage)
@@ -83,9 +93,9 @@ func getMessage() models.ChatMessage {
 	return UserMessage
 }
 
-func createBody() models.ChatRequest {
+func createBody() ChatRequest {
 	// Create the request body
-	request := models.ChatRequest{
+	request := ChatRequest{
 		Messages:    Messages,
 		Model:       "gpt-3.5-turbo",
 		MaxTokens:   2040,
@@ -94,7 +104,7 @@ func createBody() models.ChatRequest {
 	return request
 }
 
-func convertBodyToJSON(request models.ChatRequest) []byte {
+func convertBodyToJSON(request ChatRequest) []byte {
 	// Convert the request body to Byte Array
 	jsonBody, err := jsoniter.Marshal(&request)
 	if err != nil {
@@ -106,18 +116,18 @@ func convertBodyToJSON(request models.ChatRequest) []byte {
 
 func createRequest(jsonBody []byte) *http.Request {
 	// Create the HTTP request
-	req, err := http.NewRequest("POST", internal.GPT_URL, bytes.NewBuffer(jsonBody))
+	req, err := http.NewRequest("POST", GPT_URL, bytes.NewBuffer(jsonBody))
 	if err != nil {
 		panic(err)
 	}
 
 	// Set the headers
-	req.Header.Set("Authorization", "Bearer "+internal.OPENAI_API_KEY)
+	req.Header.Set("Authorization", "Bearer "+OPENAI_API_KEY)
 	req.Header.Set("Content-Type", "application/json")
 	return req
 }
 
-func sendRequest(req *http.Request) models.ChatResponse {
+func sendRequest(req *http.Request) ChatResponse {
 	// Send the request
 	client := &http.Client{}
 	resp, err := client.Do(req)
@@ -133,7 +143,7 @@ func sendRequest(req *http.Request) models.ChatResponse {
 	}
 
 	// Parse the response body
-	var response models.ChatResponse
+	var response ChatResponse
 	err = jsoniter.Unmarshal(respBody, &response)
 	if err != nil {
 		panic(err)
@@ -142,7 +152,7 @@ func sendRequest(req *http.Request) models.ChatResponse {
 	return response
 }
 
-func printResponse(response models.ChatResponse) {
+func printResponse(response ChatResponse) {
 	// Print the response
 	result := response.Choices[0].Message.Content
 	result = strings.TrimSpace(result)

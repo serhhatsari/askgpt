@@ -1,4 +1,4 @@
-package models
+package completions
 
 type CompletionChoice struct {
 	Text         string      `json:"text"`

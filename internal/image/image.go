@@ -13,10 +13,20 @@ import (
 	jsoniter "github.com/json-iterator/go"
 	"github.com/pterm/pterm"
 	"github.com/qeesung/image2ascii/convert"
-	"github.com/serhhatsari/askgpt/internal"
-	"github.com/serhhatsari/askgpt/models"
 	"github.com/spf13/cobra"
 )
+
+const IMAGE_URL = "https://api.openai.com/v1/images/generations"
+
+var OPENAI_API_KEY string
+
+var CmdImage = &cobra.Command{
+	Use:     "image",
+	Short:   "Create an image from a prompt using the Dall-E model.",
+	Long:    "Create an image from a prompt using the Dall-E model.",
+	Example: "askgpt image \"A drawing of a cat.\"",
+	Run:     GenerateImage,
+}
 
 func GenerateImage(cmd *cobra.Command, args []string) {
 
@@ -42,7 +52,7 @@ func setToken() {
 		pterm.Error.Println("Please set the OPENAI_API_KEY environment variable.")
 		os.Exit(1)
 	}
-	internal.OPENAI_API_KEY = os.Getenv("OPENAI_API_KEY")
+	OPENAI_API_KEY = os.Getenv("OPENAI_API_KEY")
 }
 
 func getPrompt(args []string) string {
@@ -59,8 +69,8 @@ func getPrompt(args []string) string {
 	return prompt
 }
 
-func createBody(prompt string) models.ImageRequest {
-	body := models.ImageRequest{
+func createBody(prompt string) ImageRequest {
+	body := ImageRequest{
 		Prompt:         prompt,
 		Size:           "1024x1024",
 		N:              1,
@@ -69,7 +79,7 @@ func createBody(prompt string) models.ImageRequest {
 	return body
 }
 
-func convertBodyToJSON(request models.ImageRequest) []byte {
+func convertBodyToJSON(request ImageRequest) []byte {
 	// Convert the request body to Byte Array
 	jsonBody, err := jsoniter.Marshal(&request)
 	if err != nil {
@@ -80,18 +90,18 @@ func convertBodyToJSON(request models.ImageRequest) []byte {
 
 func createRequest(jsonBody []byte) *http.Request {
 	// Create the HTTP request
-	req, err := http.NewRequest("POST", internal.IMAGE_URL, bytes.NewBuffer(jsonBody))
+	req, err := http.NewRequest("POST", IMAGE_URL, bytes.NewBuffer(jsonBody))
 	if err != nil {
 		panic(err)
 	}
 
 	// Set the headers
-	req.Header.Set("Authorization", "Bearer "+internal.OPENAI_API_KEY)
+	req.Header.Set("Authorization", "Bearer "+OPENAI_API_KEY)
 	req.Header.Set("Content-Type", "application/json")
 	return req
 }
 
-func sendRequest(req *http.Request) models.ImageResponse {
+func sendRequest(req *http.Request) ImageResponse {
 	// Send the request
 	client := &http.Client{}
 	resp, err := client.Do(req)
@@ -107,7 +117,7 @@ func sendRequest(req *http.Request) models.ImageResponse {
 	}
 
 	// Parse the response body
-	var response models.ImageResponse
+	var response ImageResponse
 	err = jsoniter.Unmarshal(respBody, &response)
 	if err != nil {
 		panic(err)
@@ -116,7 +126,7 @@ func sendRequest(req *http.Request) models.ImageResponse {
 	return response
 }
 
-func printResponse(response models.ImageResponse) {
+func printResponse(response ImageResponse) {
 	ImageUrl := response.Data[0].Url
 
 	filename := strconv.Itoa(int(response.Created)) + ".png"

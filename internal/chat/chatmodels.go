@@ -1,4 +1,4 @@
-package models
+package chat
 
 type ChatMessage struct {
 	Role    string `json:"role"`
