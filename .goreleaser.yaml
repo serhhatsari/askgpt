@@ -3,7 +3,7 @@ before:
     - go mod tidy
     - go generate ./...
 builds:
-  - main: ./cmd/askgpt/main.go
+  - main: ./cmd/askgpt/
   - env:
       - CGO_ENABLED=0
     goos:
