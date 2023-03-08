@@ -15,7 +15,6 @@ node_modules
 # vendor/
 
 .idea
-askgpt
 dist
 images
 dist/
