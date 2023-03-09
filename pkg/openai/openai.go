@@ -16,7 +16,6 @@ const (
 )
 
 var openaiApiKey string
-var response []byte
 
 func SendRequestToChatGPT(jsonBody []byte) []byte {
 	setEnv()
