@@ -16,6 +16,7 @@ const (
 )
 
 var openaiApiKey string
+var response []byte
 
 func SendRequestToChatGPT(jsonBody []byte) []byte {
 	setEnv()
@@ -28,14 +29,20 @@ func SendRequestToCompletions(jsonBody []byte) []byte {
 	setEnv()
 	req := createCompletionsRequest(jsonBody)
 	req = addHeaders(req)
-	return sendRequest(req)
+	pterm.Info.Println("Request sent to OpenAI. Waiting for response...")
+	res := sendRequest(req)
+	pterm.Info.Println("Response received from OpenAI:")
+	return res
 }
 
 func SendRequestToDallE(jsonBody []byte) []byte {
 	setEnv()
 	req := createDallERequest(jsonBody)
 	req = addHeaders(req)
-	return sendRequest(req)
+	pterm.Info.Println("Request sent to OpenAI. Waiting for response...")
+	res := sendRequest(req)
+	pterm.Info.Println("Response received from OpenAI:")
+	return res
 }
 
 func setEnv() {
