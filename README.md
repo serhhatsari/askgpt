@@ -94,7 +94,7 @@ askgpt image "A drawing of a cat."
   -s, --size int   Size of the image to generate. Try 256, 512, 1024 (default 256)
 ```
 
-## Examples
+## Demo
 
 `$ askgpt chat`  
 <img src="https://raw.githubusercontent.com/serhhatsari/askgpt/master/assets/chatusage.gif" width="70%" height="50%"/>
