@@ -22,6 +22,8 @@ Simple CLI to interact with OpenAI API
 
 Simple CLI to interact with OpenAI API and get answers to your questions or generate images.
 
+## Examples
+
 ```
 askgpt [flags]
 ```
