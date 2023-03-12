@@ -10,6 +10,8 @@ import (
 	"github.com/spf13/cobra"
 )
 
+var Temperature int = 0
+
 var CmdCompletion = &cobra.Command{
 	Use:     "cmp",
 	Short:   "Given a prompt, the model will return one or more predicted completions.  ",
@@ -54,10 +56,16 @@ func getPrompt(args []string) string {
 }
 
 func createBody(prompt string) Request {
+	if Temperature < 0 || Temperature > 2 {
+		pterm.Error.Println("Temperature must be between 0 and 2")
+		pterm.Info.Println("Setting temperature to 0 automatically")
+		Temperature = 0
+	}
 	body := Request{
-		Prompt:    prompt,
-		Model:     "text-davinci-003",
-		MaxTokens: 2040,
+		Prompt:      prompt,
+		Model:       "text-davinci-003",
+		MaxTokens:   2040,
+		Temperature: Temperature,
 	}
 	return body
 }
