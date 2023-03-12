@@ -15,44 +15,44 @@ Via [HomeBrew](https://brew.sh/):
 
 ## Usage
 
-### askgpt chat
+### `askgpt chat`
 Start a chat session with ChatGPT.
 ```
 askgpt chat [flags]
 ```
-#### Examples
+### Examples
 ```
 askgpt chat
 ```
-#### Options
+### Options
 ```
   -h, --help                  help for chat
   -t, --temperature float32   Temperature of the model. Higher values will result in more creative completions, but also more likelihood of nonsensical text. Try 0, 0.5, 1.0, 1.5, 2.0
 ```
-### askgpt cmp
+### `askgpt cmp`
 Ask one thing to OpenAI's GPT-3 model and get a completion.
 ```
 askgpt cmp [flags]
 ```
-#### Examples
+### Examples
 ```
 askgpt cmp "How do I make an HTTP request in Go?
 ```
-#### Options
+### Options
 ```
   -h, --help                  help for cmp
   -t, --temperature float32   Temperature of the model. Higher values will result in more creative completions, but also more likelihood of nonsensical text. Try 0, 0.5, 1.0, 1.5, 2.0
 ```
-### askgpt image
+### `askgpt image`
 Create an image from a prompt using the Dall-E model.
 ```
 askgpt image [flags]
 ```
-#### Examples
+### Examples
 ```
 askgpt image "A drawing of a cat."
 ```
-#### Options
+### Options
 ```
   -h, --help       help for image
   -s, --size int   Size of the image to generate. Try 256, 512, 1024 (default 512)
