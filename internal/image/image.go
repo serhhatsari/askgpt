@@ -15,6 +15,8 @@ import (
 	"github.com/spf13/cobra"
 )
 
+var Size int = 512
+
 var CmdImage = &cobra.Command{
 	Use:     "image",
 	Short:   "Create an image from a prompt using the Dall-E model.",
@@ -62,9 +64,14 @@ func getPrompt(args []string) string {
 }
 
 func createBody(prompt string) Request {
+	if Size != 256 && Size != 512 && Size != 1024 {
+		pterm.Error.Println("Size can be 256, 512 or 1024")
+		pterm.Info.Println("Defaulting to 512")
+		Size = 512
+	}
 	body := Request{
 		Prompt:         prompt,
-		Size:           "1024x1024",
+		Size:           strconv.Itoa(Size) + "x" + strconv.Itoa(Size),
 		N:              1,
 		ResponseFormat: "url",
 	}

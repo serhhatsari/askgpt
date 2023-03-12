@@ -25,10 +25,15 @@ var cmdRoot = &cobra.Command{
 func main() {
 
 	cmdRoot.MarkPersistentFlagRequired("port")
+
 	cmdRoot.AddCommand(chat.CmdChat)
+
 	cmdRoot.AddCommand(completions.CmdCompletion)
 	completions.CmdCompletion.Flags().IntVarP(&completions.Temperature, "temperature", "t", 0, "Temperature of the model. Higher values will result in more creative completions, but also more likelihood of nonsensical text. Try 0, 0.5, 1.0, 1.5, 2.0")
+
 	cmdRoot.AddCommand(image.CmdImage)
+	image.CmdImage.Flags().IntVarP(&image.Size, "size", "s", 256, "Size of the image to generate. Try 256, 512, 1024")
+	
 	cmdRoot.Execute()
 }
 
