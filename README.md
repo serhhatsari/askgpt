@@ -22,7 +22,7 @@ askgpt chat [flags]
 ```
 ### Examples
 ```
-askgpt chat
+askgpt chat # This will start a chat session with ChatGPT
 ```
 ### Options
 ```
@@ -32,11 +32,12 @@ askgpt chat
 ### `askgpt cmp`
 Ask one thing to OpenAI's GPT-3 model and get a completion.
 ```
-askgpt cmp [flags]
+askgpt cmp <your_prompt> [flags]
 ```
 ### Examples
 ```
-askgpt cmp "How do I make an HTTP request in Go?
+askgpt cmp "How do I make an HTTP request in Go?    
+askgpt cmp "Who is Pedro Pascal?" -t 1.5  
 ```
 ### Options
 ```
@@ -46,11 +47,12 @@ askgpt cmp "How do I make an HTTP request in Go?
 ### `askgpt image`
 Create an image from a prompt using the Dall-E model.
 ```
-askgpt image [flags]
+askgpt image <your_prompt> [flags]
 ```
 ### Examples
 ```
-askgpt image "A drawing of a cat."
+askgpt image "A drawing of a cat."  
+askgpt image "Dog is driving a car." -s 1024  
 ```
 ### Options
 ```
