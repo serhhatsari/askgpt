@@ -5,6 +5,7 @@ import (
 	"github.com/serhhatsari/askgpt/internal/chat"
 	"github.com/serhhatsari/askgpt/internal/completions"
 	"github.com/serhhatsari/askgpt/internal/image"
+	"github.com/spf13/cobra/doc"
 
 	"github.com/pterm/pterm"
 	"github.com/spf13/cobra"
@@ -34,6 +35,11 @@ func main() {
 
 	cmdRoot.AddCommand(image.CmdImage)
 	image.CmdImage.Flags().IntVarP(&image.Size, "size", "s", 256, "Size of the image to generate. Try 256, 512, 1024")
+
+	err := doc.GenMarkdownTree(cmdRoot, "./docs")
+	if err != nil {
+		pterm.Error.Println(err)
+	}
 
 	cmdRoot.Execute()
 }
