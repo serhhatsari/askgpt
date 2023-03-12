@@ -16,21 +16,15 @@ Via [HomeBrew](https://brew.sh/):
 ## Usage
 
 ### askgpt chat
-
 Start a chat session with ChatGPT.
-
 ```
 askgpt chat [flags]
 ```
-
-### Examples
-
+#### Examples
 ```
 askgpt chat
 ```
-
-### Options
-
+#### Options
 ```
   -h, --help                  help for chat
   -t, --temperature float32   Temperature of the model. Higher values will result in more creative completions, but also more likelihood of nonsensical text. Try 0, 0.5, 1.0, 1.5, 2.0
