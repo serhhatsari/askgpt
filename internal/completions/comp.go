@@ -10,7 +10,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var Temperature int = 0
+var Temperature float32 = 0
 
 var CmdCompletion = &cobra.Command{
 	Use:     "cmp",

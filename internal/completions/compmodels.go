@@ -23,8 +23,8 @@ type Response struct {
 }
 
 type Request struct {
-	Prompt      string `json:"prompt"`
-	Model       string `json:"model"`
-	MaxTokens   int    `json:"max_tokens"`
-	Temperature int    `json:"temperature"`
+	Prompt      string  `json:"prompt"`
+	Model       string  `json:"model"`
+	MaxTokens   int     `json:"max_tokens"`
+	Temperature float32 `json:"temperature"`
 }
