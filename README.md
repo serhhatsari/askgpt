@@ -22,8 +22,6 @@ Simple CLI to interact with OpenAI API
 
 Simple CLI to interact with OpenAI API and get answers to your questions or generate images.
 
-## Examples
-
 ```
 askgpt [flags]
 ```
@@ -95,6 +93,8 @@ askgpt image "A drawing of a cat."
   -h, --help       help for image
   -s, --size int   Size of the image to generate. Try 256, 512, 1024 (default 256)
 ```
+
+## Examples
 
 `$ askgpt chat`  
 <img src="https://raw.githubusercontent.com/serhhatsari/askgpt/master/assets/chatusage.gif" width="70%" height="50%"/>
