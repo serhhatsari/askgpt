@@ -22,7 +22,8 @@ askgpt chat [flags]
 ```
 ### Examples
 ```
-askgpt chat # This will start a chat session with ChatGPT
+askgpt chat # This will start a chat session with ChatGPT  
+askgpt chat -t 0.5 # This will start a chat session with ChatGPT with a temperature of 0.5 
 ```
 ### Options
 ```
