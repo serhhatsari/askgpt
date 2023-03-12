@@ -13,9 +13,9 @@ Via [HomeBrew](https://brew.sh/):
 `$ brew install serhhatsari/tools/askgpt`
 
 
-# Usage
+## Usage
 
-## askgpt chat
+### askgpt chat
 
 Start a chat session with ChatGPT.
 
@@ -35,7 +35,7 @@ askgpt chat
   -h, --help                  help for chat
   -t, --temperature float32   Temperature of the model. Higher values will result in more creative completions, but also more likelihood of nonsensical text. Try 0, 0.5, 1.0, 1.5, 2.0
 ```
-## askgpt cmp
+### askgpt cmp
 
 Ask one thing to OpenAI's GPT-3 model and get a completion.
 
@@ -56,7 +56,7 @@ askgpt cmp "How do I make an HTTP request in Go?
   -t, --temperature float32   Temperature of the model. Higher values will result in more creative completions, but also more likelihood of nonsensical text. Try 0, 0.5, 1.0, 1.5, 2.0
 ```
 
-## askgpt image
+### askgpt image
 
 Create an image from a prompt using the Dall-E model.
 
