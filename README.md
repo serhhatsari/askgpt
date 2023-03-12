@@ -14,22 +14,86 @@ Via [HomeBrew](https://brew.sh/):
 
 
 ### Usage
-```shell
-askgpt <command>
+## askgpt
 
-Available Commands:
-  cmp             Ask one thing to OpenAI
-  chat            Make a conversation with GPT-3  
-  image           Create an image from a prompt using the Dall-E model.
-  help            Help about any command
+Simple CLI to interact with OpenAI API
 
-Examples:
-  askgpt help  
-  askgpt cmp "How do I make a HTTP request in Go?"
-  askgpt chat // This will start a chat session with GPT-3
-  askgpt image "Cats are playing football with dogs."
+### Synopsis
+
+Simple CLI to interact with OpenAI API and get answers to your questions or generate images.
 
 ```
+askgpt [flags]
+```
+
+### Options
+
+```
+  -h, --help   help for askgpt
+```
+
+## askgpt chat
+
+Chat with ChatGPT
+
+```
+askgpt chat [flags]
+```
+
+### Examples
+
+```
+askgpt chat
+```
+
+### Options
+
+```
+  -h, --help                  help for chat
+  -t, --temperature float32   Temperature of the model. Higher values will result in more creative completions, but also more likelihood of nonsensical text. Try 0, 0.5, 1.0, 1.5, 2.0
+```
+## askgpt cmp
+
+Given a prompt, the model will return one or more predicted completions.
+
+```
+askgpt cmp [flags]
+```
+
+### Examples
+
+```
+askgpt cmp "How do I make an HTTP request in Go?
+```
+
+### Options
+
+```
+  -h, --help                  help for cmp
+  -t, --temperature float32   Temperature of the model. Higher values will result in more creative completions, but also more likelihood of nonsensical text. Try 0, 0.5, 1.0, 1.5, 2.0
+```
+
+## askgpt image
+
+Create an image from a prompt using the Dall-E model.
+
+```
+askgpt image [flags]
+```
+
+### Examples
+
+```
+askgpt image "A drawing of a cat."
+```
+
+### Options
+
+```
+  -h, --help       help for image
+  -s, --size int   Size of the image to generate. Try 256, 512, 1024 (default 256)
+```
+
 `$ askgpt chat`  
 <img src="https://raw.githubusercontent.com/serhhatsari/askgpt/master/assets/chatusage.gif" width="70%" height="50%"/>
 
