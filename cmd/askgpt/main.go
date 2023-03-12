@@ -36,11 +36,6 @@ func main() {
 	cmdRoot.AddCommand(image.CmdImage)
 	image.CmdImage.Flags().IntVarP(&image.Size, "size", "s", 256, "Size of the image to generate. Try 256, 512, 1024")
 
-	err := doc.GenMarkdownTree(cmdRoot, "./docs")
-	if err != nil {
-		pterm.Error.Println(err)
-	}
-
 	cmdRoot.Execute()
 }
 
