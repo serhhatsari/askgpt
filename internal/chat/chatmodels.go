@@ -25,9 +25,9 @@ type Response struct {
 	Usage   Usage    `json:"usage"`
 }
 
-type ChatRequest struct {
+type Request struct {
 	Messages    []Message `json:"messages"`
 	Model       string    `json:"model"`
 	MaxTokens   int       `json:"max_tokens"`
-	Temperature int       `json:"temperature"`
+	Temperature float32   `json:"temperature"`
 }

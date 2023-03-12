@@ -11,7 +11,10 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var Messages []Message
+var (
+	Messages    []Message
+	Temperature float32 = 0
+)
 
 var CmdChat = &cobra.Command{
 	Use:     "chat",
@@ -85,18 +88,23 @@ func getMessage() Message {
 	return UserMessage
 }
 
-func createBody() ChatRequest {
-	// Create the request body
-	request := ChatRequest{
+func createBody() Request {
+	if Temperature < 0 || Temperature > 2 {
+		pterm.Error.Println("Temperature must be between 0 and 2")
+		pterm.Info.Println("Setting temperature to 0 automatically")
+		Temperature = 0
+	}
+
+	request := Request{
 		Messages:    Messages,
 		Model:       "gpt-3.5-turbo",
-		MaxTokens:   2040,
-		Temperature: 0,
+		MaxTokens:   4095,
+		Temperature: Temperature,
 	}
 	return request
 }
 
-func convertBodyToJSON(request ChatRequest) []byte {
+func convertBodyToJSON(request Request) []byte {
 	// Convert the request body to Byte Array
 	jsonBody, err := jsoniter.Marshal(&request)
 	if err != nil {
