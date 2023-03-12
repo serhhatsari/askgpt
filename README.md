@@ -13,28 +13,11 @@ Via [HomeBrew](https://brew.sh/):
 `$ brew install serhhatsari/tools/askgpt`
 
 
-## Usage
-## askgpt
-
-Simple CLI to interact with OpenAI API
-
-### Synopsis
-
-Simple CLI to interact with OpenAI API and get answers to your questions or generate images.
-
-```
-askgpt [flags]
-```
-
-### Options
-
-```
-  -h, --help   help for askgpt
-```
+# Usage
 
 ## askgpt chat
 
-Chat with ChatGPT
+Start a chat session with ChatGPT.
 
 ```
 askgpt chat [flags]
@@ -54,7 +37,7 @@ askgpt chat
 ```
 ## askgpt cmp
 
-Given a prompt, the model will return one or more predicted completions.
+Ask one thing to OpenAI's GPT-3 model and get a completion.
 
 ```
 askgpt cmp [flags]
@@ -91,7 +74,7 @@ askgpt image "A drawing of a cat."
 
 ```
   -h, --help       help for image
-  -s, --size int   Size of the image to generate. Try 256, 512, 1024 (default 256)
+  -s, --size int   Size of the image to generate. Try 256, 512, 1024 (default 512)
 ```
 
 ## Demo
