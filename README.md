@@ -14,8 +14,7 @@ Via [HomeBrew](https://brew.sh/):
 
 
 ## Usage
-
-### `askgpt chat`
+### Command: `askgpt chat`
 Start a chat session with ChatGPT.
 ```
 askgpt chat [flags]
@@ -30,7 +29,7 @@ askgpt chat -t 0.5 # This will start a chat session with ChatGPT with a temperat
   -h, --help                  help for chat
   -t, --temperature float32   Temperature of the model. Higher values will result in more creative completions, but also more likelihood of nonsensical text. Try 0, 0.5, 1.0, 1.5, 2.0
 ```
-### `askgpt cmp`
+### Command: `askgpt cmp`
 Ask one thing to OpenAI's GPT-3 model and get a completion.
 ```
 askgpt cmp <your_prompt> [flags]
@@ -45,7 +44,7 @@ askgpt cmp "Who is Pedro Pascal?" -t 1.5
   -h, --help                  help for cmp
   -t, --temperature float32   Temperature of the model. Higher values will result in more creative completions, but also more likelihood of nonsensical text. Try 0, 0.5, 1.0, 1.5, 2.0
 ```
-### `askgpt image`
+### Command: `askgpt image`
 Create an image from a prompt using the Dall-E model.
 ```
 askgpt image <your_prompt> [flags]
