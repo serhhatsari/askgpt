@@ -14,7 +14,6 @@ Via [HomeBrew](https://brew.sh/):
 
 
 ## Usage
-
 ### Command: `askgpt chat`
 Start a chat session with ChatGPT.
 ```
