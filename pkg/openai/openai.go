@@ -2,6 +2,7 @@ package openai
 
 import (
 	"bytes"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 	"os"
@@ -57,7 +58,8 @@ func createGPTRequest(jsonBody []byte) *http.Request {
 	// Create the HTTP request
 	req, err := http.NewRequest("POST", gptUrl, bytes.NewBuffer(jsonBody))
 	if err != nil {
-		panic(err)
+		pterm.Error.Println("Error creating the HTTP request")
+		os.Exit(1)
 	}
 	return req
 }
@@ -102,6 +104,8 @@ func sendRequest(req *http.Request) []byte {
 	if err != nil {
 		panic(err)
 	}
+
+	fmt.Println("response Body:", string(respBody))
 
 	return respBody
 }
