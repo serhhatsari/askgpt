@@ -98,7 +98,7 @@ func createBody() Request {
 	request := Request{
 		Messages:    Messages,
 		Model:       "gpt-3.5-turbo",
-		MaxTokens:   4095,
+		MaxTokens:   4000,
 		Temperature: Temperature,
 	}
 	return request
@@ -123,7 +123,6 @@ func parseResponse(res []byte) Response {
 	if err != nil {
 		panic(err)
 	}
-
 	return response
 }
 
