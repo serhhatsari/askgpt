@@ -74,7 +74,8 @@ func convertBodyToJSON(request Request) []byte {
 	// Convert the request body to Byte Array
 	jsonBody, err := jsoniter.Marshal(&request)
 	if err != nil {
-		panic(err)
+		pterm.Error.Println("Error while converting the request body to JSON")
+		os.Exit(1)
 	}
 	return jsonBody
 }
@@ -84,14 +85,18 @@ func parseResponse(respBody []byte) Response {
 	var response Response
 	err := jsoniter.Unmarshal(respBody, &response)
 	if err != nil {
-		panic(err)
+		pterm.Error.Println("Error while parsing the response body")
+		os.Exit(1)
 	}
 
 	return response
 }
 
 func printResponse(response Response) {
-	// Print the response
+	if len(response.Choices) == 0 {
+		pterm.Error.Println("Something went wrong. No response from ChatGPT.")
+		os.Exit(1)
+	}
 	result := response.Choices[0].Text
 	result = strings.TrimSpace(result)
 

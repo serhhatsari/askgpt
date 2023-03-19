@@ -82,7 +82,8 @@ func convertBodyToJSON(request Request) []byte {
 	// Convert the request body to Byte Array
 	jsonBody, err := jsoniter.Marshal(&request)
 	if err != nil {
-		panic(err)
+		pterm.Error.Println("Error converting request body to JSON")
+		os.Exit(1)
 	}
 	return jsonBody
 }
@@ -92,13 +93,15 @@ func parseResponse(res []byte) Response {
 	var response Response
 	err := jsoniter.Unmarshal(res, &response)
 	if err != nil {
-		panic(err)
+		pterm.Error.Println("Error parsing response")
+		os.Exit(1)
 	}
 
 	return response
 }
 
 func printResponse(response Response) {
+
 	ImageUrl := response.Data[0].Url
 
 	filename := strconv.Itoa(int(response.Created)) + ".png"

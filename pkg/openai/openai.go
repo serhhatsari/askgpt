@@ -2,8 +2,7 @@ package openai
 
 import (
 	"bytes"
-	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"os"
 
@@ -58,7 +57,7 @@ func createGPTRequest(jsonBody []byte) *http.Request {
 	// Create the HTTP request
 	req, err := http.NewRequest("POST", gptUrl, bytes.NewBuffer(jsonBody))
 	if err != nil {
-		pterm.Error.Println("Error creating the HTTP request")
+		pterm.Error.Println("Error creating request for ChatGPT")
 		os.Exit(1)
 	}
 	return req
@@ -69,7 +68,8 @@ func createCompletionsRequest(jsonBody []byte) *http.Request {
 	// Create the HTTP request
 	req, err := http.NewRequest("POST", completionsUrl, bytes.NewBuffer(jsonBody))
 	if err != nil {
-		panic(err)
+		pterm.Error.Println("Error creating request for completions")
+		os.Exit(1)
 	}
 	return req
 }
@@ -78,7 +78,8 @@ func createDallERequest(jsonBody []byte) *http.Request {
 	// Create the HTTP request
 	req, err := http.NewRequest("POST", imageUrl, bytes.NewBuffer(jsonBody))
 	if err != nil {
-		panic(err)
+		pterm.Error.Println("Error creating request for Dall-E")
+		os.Exit(1)
 	}
 	return req
 }
@@ -95,17 +96,17 @@ func sendRequest(req *http.Request) []byte {
 	client := &http.Client{}
 	resp, err := client.Do(req)
 	if err != nil {
-		panic(err)
+		pterm.Error.Println("Error occurred while sending request to ChatGPT")
+		os.Exit(1)
 	}
 	defer resp.Body.Close()
 
 	// Get the response body
-	respBody, err := ioutil.ReadAll(resp.Body)
+	respBody, err := io.ReadAll(resp.Body)
 	if err != nil {
-		panic(err)
+		pterm.Error.Println("Error occurred while reading response body")
+		os.Exit(1)
 	}
-
-	fmt.Println("response Body:", string(respBody))
 
 	return respBody
 }
