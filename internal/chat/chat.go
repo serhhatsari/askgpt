@@ -121,13 +121,17 @@ func parseResponse(res []byte) Response {
 	err := jsoniter.Unmarshal(res, &response)
 
 	if err != nil {
-		panic(err)
+		pterm.Error.Println(err)
+		return response
 	}
 	return response
 }
 
 func printResponse(response Response) {
-	// Print the response
+	if len(response.Choices) == 0 {
+		pterm.Error.Println("Something went wrong. No response from ChatGPT.")
+		os.Exit(1)
+	}
 	result := response.Choices[0].Message.Content
 	result = strings.TrimSpace(result)
 
