@@ -28,7 +28,7 @@ jobs:
         with:
           # either 'goreleaser' (default) or 'goreleaser-pro':
           distribution: goreleaser
-          version: 1.8.3
+          version: latest
           args: release --clean
         env:
           GITHUB_TOKEN: ${{ secrets.GH_RELEASER }}
