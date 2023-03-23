@@ -36,7 +36,7 @@ changelog:
 
 brews:
 - name: askgpt
-  homepage: https://github.com/serhhatsari/homebrew-tools 
+  homepage: https://github.com/sariserhat
   tap:
-    owner: serhhatsari
+    owner: serhat
     name: homebrew-tools
