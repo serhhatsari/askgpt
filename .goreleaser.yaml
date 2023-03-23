@@ -39,4 +39,4 @@ brews:
   homepage: https://github.com/sariserhat/homebrew-tools
   tap:
     owner: sariserhat
-    name: cli
+    name: homebrew-tools
