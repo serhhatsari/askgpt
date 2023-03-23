@@ -40,5 +40,5 @@ brews:
   tap:
     owner: serhat
     name: cli
-    token: "{{ secrets.HOMEBREW_TAP_GITHUB_TOKEN }}"
+    token: "{{ .Env.HOMEBREW_TAP_GITHUB_TOKEN }}"
 
