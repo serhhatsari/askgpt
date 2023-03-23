@@ -38,5 +38,5 @@ brews:
 - name: askgpt
   homepage: https://github.com/sariserhat/homebrew-tools
   tap:
-    owner: serhat
+    owner: sariserhat
     name: cli
