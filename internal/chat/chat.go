@@ -18,7 +18,7 @@ var (
 
 var CmdChat = &cobra.Command{
 	Use:     "chat",
-	Short:   "Chat with ChatGPT",
+	Short:   "Start a chat session with ChatGPT.",
 	Example: "askgpt chat",
 	Run:     AskGPT,
 }
@@ -98,7 +98,7 @@ func createBody() Request {
 	request := Request{
 		Messages:    Messages,
 		Model:       "gpt-3.5-turbo",
-		MaxTokens:   4000,
+		MaxTokens:   2000,
 		Temperature: Temperature,
 	}
 	return request
@@ -129,7 +129,7 @@ func parseResponse(res []byte) Response {
 
 func printResponse(response Response) {
 	if len(response.Choices) == 0 {
-		pterm.Error.Println("Something went wrong. No response from ChatGPT.")
+		pterm.Error.Println("Content length exceed. Start another conversation.")
 		os.Exit(1)
 	}
 	result := response.Choices[0].Message.Content
