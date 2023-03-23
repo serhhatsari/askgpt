@@ -18,7 +18,7 @@ var (
 
 var CmdChat = &cobra.Command{
 	Use:     "chat",
-	Short:   "Chat with ChatGPT",
+	Short:   "Start a chat session with ChatGPT.",
 	Example: "askgpt chat",
 	Run:     AskGPT,
 }
