@@ -38,7 +38,7 @@ brews:
 - name: askgpt
   homepage: https://github.com/sariserhat/homebrew-tools
   tap:
-    owner: serhat
-    name: cli
+    owner: sariserhat
+    name: homebrew-tools
     token: "{{ .Env.HOMEBREW_TAP_GITHUB_TOKEN }}"
 
