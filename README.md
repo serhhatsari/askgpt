@@ -10,7 +10,7 @@ You need to generate an API key and export it as an env variable:
 
 ### Installation  
 Via [HomeBrew](https://brew.sh/):   
-`$ brew install serhhatsari/tools/askgpt`
+`$ brew install sariserhat/tools/askgpt`
 
 
 ## Usage
