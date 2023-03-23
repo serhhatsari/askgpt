@@ -19,8 +19,11 @@ var openaiApiKey string
 
 func SendRequestToChatGPT(jsonBody []byte) []byte {
 	setEnv()
+
 	req := createGPTRequest(jsonBody)
+
 	req = addHeaders(req)
+
 	return sendRequest(req)
 }
 
