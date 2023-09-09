@@ -6,12 +6,11 @@ With this tool, you can easily ask ChatGPT for help with various tasks, from gen
 ### Dependencies  
 * [OpenAI API Key](https://platform.openai.com/account/api-keys)    
 You need to generate an API key and export it as an env variable:    
-`$ export OPENAI_API_KEY= <your_api_key>`
+`export OPENAI_API_KEY= <your_api_key>`
 
 ### Installation  
 Via [HomeBrew](https://brew.sh/):   
-`$ brew install sariserhat/tools/askgpt`
-
+`brew install sariserhat/tools/askgpt`  
 
 ## Usage
 ### Command: `askgpt chat`
