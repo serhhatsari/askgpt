@@ -2,24 +2,46 @@
 AskGPT is a CLI tool built in Go that allows you to interact with ChatGPT, Dall-E models trained by OpenAI.  
 With this tool, you can easily ask ChatGPT for help with various tasks, from generating text to images.
 
-## Getting Started
+## Getting Started  
 ### Dependencies  
 * [OpenAI API Key](https://platform.openai.com/account/api-keys)    
 You need to generate an API key and export it as an env variable:    
 `export OPENAI_API_KEY= <your_api_key>`
 
-### Installation  
-Via [HomeBrew](https://brew.sh/):   
-`brew install sariserhat/tools/askgpt`  
+### Installation and Running
+#### **Via [HomeBrew](https://brew.sh/):**     
+First, install the tap:  
+```shell
+brew install sariserhat/tools/askgpt  
+```
+Then, you can run the executable:  
+```shell
+askgpt <command>
+```
+
+#### **Via Source Code:**  
+First, clone the repository:  
+```shell
+git clone https://github.com/serhhatsari/askgpt.git
+```
+Then, build the project:  
+```shell
+go build cmd/askgpt/main.go
+```
+Finally, you can run the executable:  
+```shell 
+./askgpt <command>
+```
+
 
 ## Usage
 ### Command: `askgpt chat`
 Start a chat session with ChatGPT.
-```
+```shell
 askgpt chat [flags]
 ```
 #### Examples
-```
+```shell
 askgpt chat # This will start a chat session with ChatGPT  
 askgpt chat -t 0.5 # This will start a chat session with ChatGPT with a temperature of 0.5 
 ```
@@ -30,11 +52,11 @@ askgpt chat -t 0.5 # This will start a chat session with ChatGPT with a temperat
 ```
 ### Command: `askgpt cmp`
 Ask one thing to OpenAI's GPT-3 model and get a completion.
-```
+```shell
 askgpt cmp <your_prompt> [flags]
 ```
 #### Examples
-```
+```shell
 askgpt cmp "How do I make an HTTP request in Go?    
 askgpt cmp "Who is Pedro Pascal?" -t 1.5  
 ```
@@ -49,7 +71,7 @@ Create an image from a prompt using the Dall-E model.
 askgpt image <your_prompt> [flags]
 ```
 #### Examples
-```
+```shell
 askgpt image "A drawing of a cat."  
 askgpt image "Dog is driving a car." -s 1024  
 ```
