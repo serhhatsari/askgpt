@@ -26,7 +26,7 @@ git clone https://github.com/serhhatsari/askgpt.git
 ```
 Then, build the project:  
 ```shell
-go build
+go build cmd/askgpt/main.go
 ```
 Finally, you can run the executable:  
 ```shell 
