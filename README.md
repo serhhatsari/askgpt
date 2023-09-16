@@ -50,21 +50,6 @@ askgpt chat -t 0.5 # This will start a chat session with ChatGPT with a temperat
   -h, --help                  help for chat
   -t, --temperature float32   Temperature of the model. Higher values will result in more creative completions, but also more likelihood of nonsensical text. Try 0, 0.5, 1.0, 1.5, 2.0
 ```
-### Command: `askgpt cmp`
-Ask one thing to OpenAI's GPT-3 model and get a completion.
-```shell
-askgpt cmp <your_prompt> [flags]
-```
-#### Examples
-```shell
-askgpt cmp "How do I make an HTTP request in Go?    
-askgpt cmp "Who is Pedro Pascal?" -t 1.5  
-```
-#### Options
-```
-  -h, --help                  help for cmp
-  -t, --temperature float32   Temperature of the model. Higher values will result in more creative completions, but also more likelihood of nonsensical text. Try 0, 0.5, 1.0, 1.5, 2.0
-```
 ### Command: `askgpt image`
 Create an image from a prompt using the Dall-E model.
 ```
@@ -86,12 +71,8 @@ askgpt image "Dog is driving a car." -s 1024
 `$ askgpt chat`  
 <img src="https://raw.githubusercontent.com/serhhatsari/askgpt/master/assets/chatusage.gif" width="70%" height="50%"/>
 
-`$ askgpt cmp "<your_prompt>"`  
-<img src="https://raw.githubusercontent.com/serhhatsari/askgpt/master/assets/cmpusage.gif" width="70%" height="50%"/>
-
 `$ askgpt image "<your_prompt>"`  
 <img src="https://raw.githubusercontent.com/serhhatsari/askgpt/master/assets/imageusage.gif" width="70%" height="50%"/>
-
 
 ## Contributions
 Contributions to AskGPT are always welcome! If you find a bug or have an idea for a new feature, feel free to submit a pull request or open an issue on the GitHub repository.

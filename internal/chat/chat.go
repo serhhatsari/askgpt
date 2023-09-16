@@ -2,11 +2,10 @@ package chat
 
 import (
 	"bufio"
-	"github.com/serhhatsari/askgpt/utils"
+	utils2 "github.com/serhhatsari/askgpt/internal/utils"
 	"os"
 	"strings"
 
-	jsoniter "github.com/json-iterator/go"
 	"github.com/pterm/pterm"
 	"github.com/serhhatsari/askgpt/pkg/openai"
 	"github.com/spf13/cobra"
@@ -27,9 +26,9 @@ var CmdChat = &cobra.Command{
 
 func chatWithGPT(cmd *cobra.Command, args []string) {
 
-	utils.CheckToken()
+	utils2.CheckToken()
 
-	utils.PrintDescription()
+	utils2.PrintDescription()
 
 	for {
 		getMessage()
@@ -88,29 +87,6 @@ func createBody() Request {
 		Temperature: Temperature,
 	}
 	return request
-}
-
-func convertBodyToJSON(request Request) []byte {
-	// Convert the request body to Byte Array
-	jsonBody, err := jsoniter.Marshal(&request)
-	if err != nil {
-		pterm.Error.Println(err)
-		return nil
-	}
-	return jsonBody
-}
-
-func parseResponse(res []byte) Response {
-	// Parse the response body
-	var response Response
-
-	err := jsoniter.Unmarshal(res, &response)
-
-	if err != nil {
-		pterm.Error.Println(err)
-		return response
-	}
-	return response
 }
 
 func printResponse(response Response) {
