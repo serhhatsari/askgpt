@@ -2,24 +2,16 @@ package askgpt
 
 import (
 	"github.com/serhhatsari/askgpt/internal/chat"
-	utils2 "github.com/serhhatsari/askgpt/internal/utils"
+	"github.com/serhhatsari/askgpt/internal/utils"
 	"github.com/serhhatsari/askgpt/pkg/openai"
 	"github.com/spf13/cobra"
 )
 
-var CmdChat = &cobra.Command{
-	Use:     "chat",
-	Short:   "Start a chat session with ChatGPT.",
-	Long:    "Start a chat session with ChatGPT. Talk however you want, ChatGPT will respond.",
-	Example: "askgpt chat",
-	Run:     chatWithGPT,
-}
-
 func chatWithGPT(cmd *cobra.Command, args []string) {
 
-	utils2.CheckToken()
+	utils.CheckToken()
 
-	utils2.PrintDescription()
+	utils.PrintDescription()
 
 	for {
 		chat.GetMessage()
@@ -36,4 +28,12 @@ func chatWithGPT(cmd *cobra.Command, args []string) {
 
 	}
 
+}
+
+var CmdChat = &cobra.Command{
+	Use:     "chat",
+	Short:   "Start a chat session with ChatGPT.",
+	Long:    "Start a chat session with ChatGPT. Talk however you want, ChatGPT will respond.",
+	Example: "askgpt chat",
+	Run:     chatWithGPT,
 }
