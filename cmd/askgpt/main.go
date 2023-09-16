@@ -2,12 +2,12 @@ package main
 
 import (
 	"github.com/joho/godotenv"
+	"github.com/pterm/pterm"
 	"github.com/serhhatsari/askgpt/internal/chat"
 	"github.com/serhhatsari/askgpt/internal/completions"
 	"github.com/serhhatsari/askgpt/internal/image"
-
-	"github.com/pterm/pterm"
 	"github.com/spf13/cobra"
+	"log/slog"
 )
 
 func welcomeMessage(cmd *cobra.Command, args []string) {
@@ -43,7 +43,6 @@ func main() {
 func init() {
 	err := godotenv.Load()
 	if err != nil {
-		// Handle errors if the .env file cannot be loaded
-		panic("Error loading .env file")
+		slog.Error("Error loading .env file: %v", err)
 	}
 }

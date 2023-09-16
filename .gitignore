@@ -20,5 +20,4 @@ images
 dist/
 askgptcli
 main
-.env
 .env.local
