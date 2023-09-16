@@ -21,3 +21,4 @@ dist/
 askgptcli
 main
 .env.local
+askgpt

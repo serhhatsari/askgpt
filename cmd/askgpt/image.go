@@ -1,11 +1,12 @@
 package askgpt
 
 import (
+	"os"
+
 	"github.com/pterm/pterm"
 	"github.com/serhhatsari/askgpt/internal/image"
 	"github.com/serhhatsari/askgpt/pkg/openai"
 	"github.com/spf13/cobra"
-	"os"
 )
 
 func checkArgs(cmd *cobra.Command, args []string) error {

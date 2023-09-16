@@ -2,17 +2,18 @@ package image
 
 import (
 	"fmt"
-	jsoniter "github.com/json-iterator/go"
-	"github.com/pterm/pterm"
-	"github.com/qeesung/image2ascii/convert"
 	"io"
 	"net/http"
 	"os"
 	"path/filepath"
 	"strconv"
+
+	jsoniter "github.com/json-iterator/go"
+	"github.com/pterm/pterm"
+	"github.com/qeesung/image2ascii/convert"
 )
 
-var Size int = 512
+var Size = 512
 
 func GetPrompt(args []string) string {
 	// Check if the user provided a prompt
