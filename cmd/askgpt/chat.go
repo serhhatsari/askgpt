@@ -8,7 +8,7 @@ import (
 )
 
 func chatWithGPT(cmd *cobra.Command, args []string) {
-	utils.CheckToken()
+	utils.GetToken()
 	utils.PrintDescription()
 
 	for {
