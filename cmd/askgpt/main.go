@@ -1,13 +1,14 @@
 package main
 
 import (
+	"log/slog"
+
 	"github.com/joho/godotenv"
 	"github.com/pterm/pterm"
 	"github.com/serhhatsari/askgpt/internal/chat"
 	"github.com/serhhatsari/askgpt/internal/completions"
 	"github.com/serhhatsari/askgpt/internal/image"
 	"github.com/spf13/cobra"
-	"log/slog"
 )
 
 func welcomeMessage(cmd *cobra.Command, args []string) {
