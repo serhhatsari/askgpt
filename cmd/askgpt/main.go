@@ -35,8 +35,7 @@ func main() {
 
 	err := cmdRoot.Execute()
 	if err != nil {
-		pterm.Error.Println(err)
-		return
+		slog.Error("Error executing command: %v", err)
 	}
 }
 
