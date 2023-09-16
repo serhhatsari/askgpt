@@ -5,8 +5,10 @@ With this tool, you can easily ask ChatGPT for help with various tasks, from gen
 ## Getting Started  
 ### Dependencies  
 * [OpenAI API Key](https://platform.openai.com/account/api-keys)    
-You need to generate an API key and add it to .env file:      
-`OPENAI_API_KEY=<your_api_key>`
+You need to generate an API key and export it as an environment variable:  
+```shell
+export OPENAI_API_KEY=<your_api_key>
+```
 
 ### Installation and Running
 #### **Via [HomeBrew](https://brew.sh/):**     
