@@ -3,7 +3,6 @@ package askgpt
 import (
 	"log/slog"
 
-	"github.com/joho/godotenv"
 	"github.com/pterm/pterm"
 	"github.com/serhhatsari/askgpt/internal/chat"
 	"github.com/serhhatsari/askgpt/internal/image"
@@ -33,12 +32,5 @@ func Execute() {
 	err := CmdRoot.Execute()
 	if err != nil {
 		slog.Error("Error executing command: %v", err)
-	}
-}
-
-func init() {
-	err := godotenv.Load()
-	if err != nil {
-		slog.Error("Error loading .env file: %v", err)
 	}
 }
