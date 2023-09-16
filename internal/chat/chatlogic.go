@@ -2,10 +2,11 @@ package chat
 
 import (
 	"bufio"
-	jsoniter "github.com/json-iterator/go"
-	"github.com/pterm/pterm"
 	"os"
 	"strings"
+
+	jsoniter "github.com/json-iterator/go"
+	"github.com/pterm/pterm"
 )
 
 var (
