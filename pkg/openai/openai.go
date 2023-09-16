@@ -5,11 +5,6 @@ import (
 	"github.com/serhhatsari/askgpt/internal/utils"
 )
 
-const (
-	gptUrl   = "https://api.openai.com/v1/chat/completions"
-	imageUrl = "https://api.openai.com/v1/images/generations"
-)
-
 var openaiApiKey string
 
 func SendRequestToChatGPT(jsonBody []byte) []byte {
