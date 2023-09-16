@@ -24,7 +24,7 @@ Then, you can run the executable:
 askgpt <command>
 ```
 
-#### **Via Source Code:**  
+#### **Via [Source Code](https://github.com/serhhatsari/askgpt.git):**  
 First, clone the repository:  
 ```shell
 git clone https://github.com/serhhatsari/askgpt.git
