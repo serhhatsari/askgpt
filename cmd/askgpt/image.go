@@ -17,7 +17,7 @@ func checkArgs(cmd *cobra.Command, args []string) error {
 	return nil
 }
 
-func GenerateImage(cmd *cobra.Command, args []string) {
+func generateImage(cmd *cobra.Command, args []string) {
 	prompt := image.GetPrompt(args)
 	body := image.CreateBody(prompt)
 	jsonBody := image.ConvertBodyToJSON(body)
@@ -30,6 +30,6 @@ var cmdImage = &cobra.Command{
 	Use:     "image",
 	Short:   "Create an image from a prompt using the Dall-E model.",
 	Example: "askgpt image \"A drawing of a cat.\"",
-	Run:     GenerateImage,
+	Run:     generateImage,
 	Args:    checkArgs,
 }
