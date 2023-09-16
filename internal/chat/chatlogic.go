@@ -49,7 +49,7 @@ func CreateBody() Request {
 
 	request := Request{
 		Messages:    Messages,
-		Model:       "gpt-3.5-turbo",
+		Model:       "gpt-4",
 		MaxTokens:   2000,
 		Temperature: Temperature,
 	}
@@ -66,7 +66,7 @@ func PrintResponse(response Response) {
 
 	Messages = append(Messages, response.Choices[0].Message)
 
-	pterm.Print(pterm.LightGreen("\nGPT-3: "))
+	pterm.Print(pterm.LightGreen("\nGPT-4: "))
 	pterm.Println(result + "\n")
 }
 
