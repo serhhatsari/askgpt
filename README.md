@@ -76,13 +76,17 @@ askgpt image "Dog is driving a car." -s 1024
 ```shell
 askgpt chat [flags]
 ```  
-<img src="https://raw.githubusercontent.com/serhhatsari/askgpt/master/assets/chatusage.gif" width="70%" height="50%"/>
+<div>
+    <img src="https://raw.githubusercontent.com/serhhatsari/askgpt/master/assets/chatusage.gif"/>
+</div>
 
 ### Generate an image with Dall-E
 ```shell
 askgpt image <your_prompt>
 ```
-<img src="https://raw.githubusercontent.com/serhhatsari/askgpt/master/assets/imageusage.gif" width="70%" height="50%"/>
+<div align="center">
+    <img src="https://raw.githubusercontent.com/serhhatsari/askgpt/master/assets/imageusage.gif"/>
+</div>  
 
 ## Contributions
 Contributions to AskGPT are always welcome! If you find a bug or have an idea for a new feature, feel free to submit a pull request or open an issue on the GitHub repository.
