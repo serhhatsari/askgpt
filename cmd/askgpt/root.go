@@ -27,8 +27,8 @@ func Execute() {
 	CmdRoot.AddCommand(CmdChat)
 	CmdChat.Flags().Float32VarP(&chat.Temperature, "temperature", "t", 0, "Temperature of the model. Higher values will result in more creative completions, but also more likelihood of nonsensical text. Try 0, 0.5, 1.0, 1.5, 2.0")
 
-	CmdRoot.AddCommand(CmdImage)
-	CmdImage.Flags().IntVarP(&image.Size, "size", "s", 256, "Size of the image to generate. Try 256, 512, 1024")
+	CmdRoot.AddCommand(cmdImage)
+	cmdImage.Flags().IntVarP(&image.Size, "size", "s", 256, "Size of the image to generate. Try 256, 512, 1024")
 
 	err := CmdRoot.Execute()
 	if err != nil {
