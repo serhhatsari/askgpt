@@ -2,12 +2,13 @@ package chat
 
 import (
 	"bufio"
-	"github.com/serhhatsari/askgpt/pkg/openai"
+	"github.com/serhhatsari/askgpt/utils"
 	"os"
 	"strings"
 
 	jsoniter "github.com/json-iterator/go"
 	"github.com/pterm/pterm"
+	"github.com/serhhatsari/askgpt/pkg/openai"
 	"github.com/spf13/cobra"
 )
 
@@ -19,15 +20,16 @@ var (
 var CmdChat = &cobra.Command{
 	Use:     "chat",
 	Short:   "Start a chat session with ChatGPT.",
+	Long:    "Start a chat session with ChatGPT. Talk however you want, ChatGPT will respond.",
 	Example: "askgpt chat",
-	Run:     AskGPT,
+	Run:     chatWithGPT,
 }
 
-func AskGPT(cmd *cobra.Command, args []string) {
+func chatWithGPT(cmd *cobra.Command, args []string) {
 
-	checkToken()
+	utils.CheckToken()
 
-	printDescription()
+	utils.PrintDescription()
 
 	for {
 		getMessage()
@@ -46,27 +48,11 @@ func AskGPT(cmd *cobra.Command, args []string) {
 
 }
 
-func checkToken() {
-	OpenaiApiKey := os.Getenv("OPENAI_API_KEY")
-	if OpenaiApiKey == "" {
-		pterm.Error.Println("Please set the OPENAI_API_KEY environment variable.")
-		os.Exit(1)
-	}
-}
-
-func printDescription() {
-	pterm.DefaultHeader.Println("Welcome to AskGPT!")
-	pterm.Println(pterm.Blue("AskGPT is a CLI to interact with ChatGPT"))
-	pterm.Println(pterm.Blue("You can ask any question and ChatGPT will answer it."))
-	pterm.Println(pterm.Red("To exit, type \"exit\" or \"quit\" or press Ctrl C.\n"))
-}
-
 func checkExit(message string) {
 	message = strings.ToLower(message)
 	if message == "exit" || message == "quit" {
 		os.Exit(0)
 	}
-
 }
 
 func getMessage() Message {
