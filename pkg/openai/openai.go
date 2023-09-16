@@ -2,6 +2,7 @@ package openai
 
 import (
 	"bytes"
+	"github.com/serhhatsari/askgpt/internal/utils"
 	"io"
 	"net/http"
 	"os"
@@ -10,85 +11,34 @@ import (
 )
 
 const (
-	gptUrl         = "https://api.openai.com/v1/chat/completions"
-	completionsUrl = "https://api.openai.com/v1/completions"
-	imageUrl       = "https://api.openai.com/v1/images/generations"
+	gptUrl   = "https://api.openai.com/v1/chat/completions"
+	imageUrl = "https://api.openai.com/v1/images/generations"
 )
 
 var openaiApiKey string
 
 func SendRequestToChatGPT(jsonBody []byte) []byte {
-	setEnv()
-
-	req := createGPTRequest(jsonBody)
-
-	req = addHeaders(req)
-
+	utils.CheckToken()
+	req := createRequest(jsonBody, gptUrl)
 	return sendRequest(req)
 }
 
-func SendRequestToCompletions(jsonBody []byte) []byte {
-	setEnv()
-	req := createCompletionsRequest(jsonBody)
-	req = addHeaders(req)
-	pterm.Info.Println("Request sent to OpenAI. Waiting for response...")
-	res := sendRequest(req)
-	pterm.Info.Println("Response received from OpenAI:")
-	return res
-}
-
 func SendRequestToDallE(jsonBody []byte) []byte {
-	setEnv()
-	req := createDallERequest(jsonBody)
-	req = addHeaders(req)
+	utils.CheckToken()
+	req := createRequest(jsonBody, imageUrl)
 	pterm.Info.Println("Request sent to OpenAI. Waiting for response...")
 	res := sendRequest(req)
 	pterm.Info.Println("Response received from OpenAI:")
 	return res
 }
 
-func setEnv() {
-	openaiApiKey = os.Getenv("OPENAI_API_KEY")
-	if openaiApiKey == "" {
-		pterm.Error.Println("Please set the OPENAI_API_KEY environment variable.")
-		os.Exit(1)
-	}
-}
-
-func createGPTRequest(jsonBody []byte) *http.Request {
-
+func createRequest(jsonBody []byte, url string) *http.Request {
 	// Create the HTTP request
-	req, err := http.NewRequest("POST", gptUrl, bytes.NewBuffer(jsonBody))
+	req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonBody))
 	if err != nil {
-		pterm.Error.Println("Error creating request for ChatGPT")
+		pterm.Error.Println("Error creating request")
 		os.Exit(1)
 	}
-	return req
-}
-
-func createCompletionsRequest(jsonBody []byte) *http.Request {
-
-	// Create the HTTP request
-	req, err := http.NewRequest("POST", completionsUrl, bytes.NewBuffer(jsonBody))
-	if err != nil {
-		pterm.Error.Println("Error creating request for completions")
-		os.Exit(1)
-	}
-	return req
-}
-
-func createDallERequest(jsonBody []byte) *http.Request {
-	// Create the HTTP request
-	req, err := http.NewRequest("POST", imageUrl, bytes.NewBuffer(jsonBody))
-	if err != nil {
-		pterm.Error.Println("Error creating request for Dall-E")
-		os.Exit(1)
-	}
-	return req
-}
-
-func addHeaders(req *http.Request) *http.Request {
-	// Set the headers
 	req.Header.Set("Authorization", "Bearer "+openaiApiKey)
 	req.Header.Set("Content-Type", "application/json")
 	return req
