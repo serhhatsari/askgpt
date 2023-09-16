@@ -84,9 +84,10 @@ askgpt chat [flags]
 ```shell
 askgpt image <your_prompt>
 ```
-<div>
-    <img src="https://raw.githubusercontent.com/serhhatsari/askgpt/master/assets/imageusage.gif" width="70%" height="50%"/>
-</div>
+<div align="center">
+    <img src="https://raw.githubusercontent.com/serhhatsari/askgpt/master/assets/imageusage.gif"/>
+</div>  
+
 ## Contributions
 Contributions to AskGPT are always welcome! If you find a bug or have an idea for a new feature, feel free to submit a pull request or open an issue on the GitHub repository.
 
