@@ -76,7 +76,9 @@ askgpt image "Dog is driving a car." -s 1024
 ```shell
 askgpt chat [flags]
 ```  
-<img src="https://raw.githubusercontent.com/serhhatsari/askgpt/master/assets/chatusage.gif" width="70%" height="50%"/>
+<div align="center">
+<img src="https://raw.githubusercontent.com/serhhatsari/askgpt/master/assets/chatusage.gif""/>
+</div>
 
 ### Generate an image with Dall-E
 ```shell
