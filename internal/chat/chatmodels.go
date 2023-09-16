@@ -23,6 +23,7 @@ type Response struct {
 	Created int64    `json:"created"`
 	Choices []Choice `json:"choices"`
 	Usage   Usage    `json:"usage"`
+	Model   string   `json:"model"`
 }
 
 type Request struct {
