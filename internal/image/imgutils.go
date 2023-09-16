@@ -2,52 +2,19 @@ package image
 
 import (
 	"fmt"
-	"github.com/serhhatsari/askgpt/pkg/openai"
+	jsoniter "github.com/json-iterator/go"
+	"github.com/pterm/pterm"
+	"github.com/qeesung/image2ascii/convert"
 	"io"
 	"net/http"
 	"os"
 	"path/filepath"
 	"strconv"
-
-	jsoniter "github.com/json-iterator/go"
-	"github.com/pterm/pterm"
-	"github.com/qeesung/image2ascii/convert"
-	"github.com/spf13/cobra"
 )
 
 var Size int = 512
 
-var CmdImage = &cobra.Command{
-	Use:     "image",
-	Short:   "Create an image from a prompt using the Dall-E model.",
-	Example: "askgpt image \"A drawing of a cat.\"",
-	Run:     GenerateImage,
-	Args: func(cmd *cobra.Command, args []string) error {
-		if len(args) != 1 {
-			pterm.Error.Println("Please provide a prompt, example: askgpt image \"A drawing of a cat.\"")
-			os.Exit(1)
-		}
-		return nil
-	},
-}
-
-func GenerateImage(cmd *cobra.Command, args []string) {
-
-	prompt := getPrompt(args)
-
-	body := createBody(prompt)
-
-	jsonBody := convertBodyToJSON(body)
-
-	res := openai.SendRequestToDallE(jsonBody)
-
-	parsedResponse := parseResponse(res)
-
-	printResponse(parsedResponse)
-
-}
-
-func getPrompt(args []string) string {
+func GetPrompt(args []string) string {
 	// Check if the user provided a prompt
 	if len(args) != 1 {
 		pterm.Error.Println("Please provide a prompt, example: askgpt image \"A drawing of a cat.\"")
@@ -63,7 +30,7 @@ func getPrompt(args []string) string {
 	return prompt
 }
 
-func createBody(prompt string) Request {
+func CreateBody(prompt string) Request {
 	if Size != 256 && Size != 512 && Size != 1024 {
 		pterm.Error.Println("Size can be 256, 512 or 1024")
 		pterm.Info.Println("Defaulting to 512")
@@ -78,7 +45,7 @@ func createBody(prompt string) Request {
 	return body
 }
 
-func convertBodyToJSON(request Request) []byte {
+func ConvertBodyToJSON(request Request) []byte {
 	// Convert the request body to Byte Array
 	jsonBody, err := jsoniter.Marshal(&request)
 	if err != nil {
@@ -88,7 +55,7 @@ func convertBodyToJSON(request Request) []byte {
 	return jsonBody
 }
 
-func parseResponse(res []byte) Response {
+func ParseResponse(res []byte) Response {
 	// Parse the response body
 	var response Response
 	err := jsoniter.Unmarshal(res, &response)
@@ -100,7 +67,7 @@ func parseResponse(res []byte) Response {
 	return response
 }
 
-func printResponse(response Response) {
+func PrintResponse(response Response) {
 
 	ImageUrl := response.Data[0].Url
 
@@ -129,10 +96,10 @@ func printResponse(response Response) {
 		panic(err)
 	}
 
-	printImage(filepath)
+	PrintImage(filepath)
 }
 
-func printImage(filepath string) {
+func PrintImage(filepath string) {
 	// Create convert options
 	convertOptions := convert.DefaultOptions
 	convertOptions.FixedWidth = 100

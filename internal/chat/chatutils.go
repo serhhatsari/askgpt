@@ -2,13 +2,10 @@ package chat
 
 import (
 	"bufio"
-	utils2 "github.com/serhhatsari/askgpt/internal/utils"
+	jsoniter "github.com/json-iterator/go"
+	"github.com/pterm/pterm"
 	"os"
 	"strings"
-
-	"github.com/pterm/pterm"
-	"github.com/serhhatsari/askgpt/pkg/openai"
-	"github.com/spf13/cobra"
 )
 
 var (
@@ -16,45 +13,14 @@ var (
 	Temperature float32 = 0
 )
 
-var CmdChat = &cobra.Command{
-	Use:     "chat",
-	Short:   "Start a chat session with ChatGPT.",
-	Long:    "Start a chat session with ChatGPT. Talk however you want, ChatGPT will respond.",
-	Example: "askgpt chat",
-	Run:     chatWithGPT,
-}
-
-func chatWithGPT(cmd *cobra.Command, args []string) {
-
-	utils2.CheckToken()
-
-	utils2.PrintDescription()
-
-	for {
-		getMessage()
-
-		body := createBody()
-
-		jsonBody := convertBodyToJSON(body)
-
-		res := openai.SendRequestToChatGPT(jsonBody)
-
-		parsedResponse := parseResponse(res)
-
-		printResponse(parsedResponse)
-
-	}
-
-}
-
-func checkExit(message string) {
+func CheckExit(message string) {
 	message = strings.ToLower(message)
 	if message == "exit" || message == "quit" {
 		os.Exit(0)
 	}
 }
 
-func getMessage() Message {
+func GetMessage() Message {
 	var message string
 	pterm.Print(pterm.Yellow("You: "))
 
@@ -63,7 +29,7 @@ func getMessage() Message {
 		message = scanner.Text()
 	}
 
-	checkExit(message)
+	CheckExit(message)
 
 	var UserMessage Message
 	UserMessage.Role = "user"
@@ -73,7 +39,7 @@ func getMessage() Message {
 	return UserMessage
 }
 
-func createBody() Request {
+func CreateBody() Request {
 	if Temperature < 0 || Temperature > 2 {
 		pterm.Error.Println("Temperature must be between 0 and 2")
 		pterm.Info.Println("Setting temperature to 0 automatically")
@@ -89,7 +55,7 @@ func createBody() Request {
 	return request
 }
 
-func printResponse(response Response) {
+func PrintResponse(response Response) {
 	if len(response.Choices) == 0 {
 		pterm.Error.Println("Content length exceed. Start another conversation.")
 		os.Exit(1)
@@ -101,4 +67,27 @@ func printResponse(response Response) {
 
 	pterm.Print(pterm.LightGreen("\nGPT-3: "))
 	pterm.Println(result + "\n")
+}
+
+func ConvertBodyToJSON(request Request) []byte {
+	// Convert the request body to Byte Array
+	jsonBody, err := jsoniter.Marshal(&request)
+	if err != nil {
+		pterm.Error.Println(err)
+		return nil
+	}
+	return jsonBody
+}
+
+func ParseResponse(res []byte) Response {
+	// Parse the response body
+	var response Response
+
+	err := jsoniter.Unmarshal(res, &response)
+
+	if err != nil {
+		pterm.Error.Println(err)
+		return response
+	}
+	return response
 }

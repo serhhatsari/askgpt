@@ -1,4 +1,4 @@
-package main
+package askgpt
 
 import (
 	"log/slog"
@@ -15,22 +15,22 @@ func welcomeMessage(cmd *cobra.Command, args []string) {
 	pterm.Println(pterm.Blue("AskGPT is a CLI to interact with OpenAI API\n"))
 }
 
-var cmdRoot = &cobra.Command{
+var CmdRoot = &cobra.Command{
 	Use:   "askgpt",
 	Short: "Simple CLI to interact with OpenAI API",
 	Long:  "Simple CLI to interact with OpenAI API and get answers to your questions or generate images.",
 	Run:   welcomeMessage,
 }
 
-func main() {
+func Execute() {
 
-	cmdRoot.AddCommand(chat.CmdChat)
-	chat.CmdChat.Flags().Float32VarP(&chat.Temperature, "temperature", "t", 0, "Temperature of the model. Higher values will result in more creative completions, but also more likelihood of nonsensical text. Try 0, 0.5, 1.0, 1.5, 2.0")
+	CmdRoot.AddCommand(CmdChat)
+	CmdChat.Flags().Float32VarP(&chat.Temperature, "temperature", "t", 0, "Temperature of the model. Higher values will result in more creative completions, but also more likelihood of nonsensical text. Try 0, 0.5, 1.0, 1.5, 2.0")
 
-	cmdRoot.AddCommand(image.CmdImage)
-	image.CmdImage.Flags().IntVarP(&image.Size, "size", "s", 256, "Size of the image to generate. Try 256, 512, 1024")
+	CmdRoot.AddCommand(CmdImage)
+	CmdImage.Flags().IntVarP(&image.Size, "size", "s", 256, "Size of the image to generate. Try 256, 512, 1024")
 
-	err := cmdRoot.Execute()
+	err := CmdRoot.Execute()
 	if err != nil {
 		slog.Error("Error executing command: %v", err)
 	}
