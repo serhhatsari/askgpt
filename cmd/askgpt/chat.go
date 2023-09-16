@@ -8,24 +8,16 @@ import (
 )
 
 func chatWithGPT(cmd *cobra.Command, args []string) {
-
 	utils.CheckToken()
-
 	utils.PrintDescription()
 
 	for {
 		chat.GetMessage()
-
 		body := chat.CreateBody()
-
 		jsonBody := chat.ConvertBodyToJSON(body)
-
 		res := openai.SendRequestToChatGPT(jsonBody)
-
 		parsedResponse := chat.ParseResponse(res)
-
 		chat.PrintResponse(parsedResponse)
-
 	}
 
 }
