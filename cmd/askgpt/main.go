@@ -6,7 +6,6 @@ import (
 	"github.com/joho/godotenv"
 	"github.com/pterm/pterm"
 	"github.com/serhhatsari/askgpt/internal/chat"
-	"github.com/serhhatsari/askgpt/internal/completions"
 	"github.com/serhhatsari/askgpt/internal/image"
 	"github.com/spf13/cobra"
 )
@@ -27,9 +26,6 @@ func main() {
 
 	cmdRoot.AddCommand(chat.CmdChat)
 	chat.CmdChat.Flags().Float32VarP(&chat.Temperature, "temperature", "t", 0, "Temperature of the model. Higher values will result in more creative completions, but also more likelihood of nonsensical text. Try 0, 0.5, 1.0, 1.5, 2.0")
-
-	cmdRoot.AddCommand(completions.CmdCompletion)
-	completions.CmdCompletion.Flags().Float32VarP(&completions.Temperature, "temperature", "t", 0, "Temperature of the model. Higher values will result in more creative completions, but also more likelihood of nonsensical text. Try 0, 0.5, 1.0, 1.5, 2.0")
 
 	cmdRoot.AddCommand(image.CmdImage)
 	image.CmdImage.Flags().IntVarP(&image.Size, "size", "s", 256, "Size of the image to generate. Try 256, 512, 1024")
